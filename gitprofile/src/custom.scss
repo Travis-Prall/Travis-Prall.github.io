@@ -1,0 +1,468 @@
+/**========================================================================
+ *                           Colors
+ *========================================================================**/
+
+$textPrimary: #fff;
+$textSecondary: rgba(255, 255, 255, 0.7);
+$textdisabled: rgba(255, 255, 255, 0.5);
+
+$composition0: black;
+$composition1: lighten($composition0, 10);
+$composition2: lighten($composition1, 10);
+$composition3: lighten($composition2, 10);
+$composition4: lighten($composition3, 10);
+$composition5: lighten($composition4, 10);
+$composition6: lighten($composition5, 10);
+$composition7: lighten($composition6, 10);
+$composition8: lighten($composition7, 10);
+$composition9: lighten($composition8, 10);
+
+$Carbon: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+  linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+  linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+  linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+  linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+  linear-gradient(
+    #1d1d1d 25%,
+    #1a1a1a 25%,
+    #1a1a1a 50%,
+    transparent 50%,
+    transparent 75%,
+    #242424 75%,
+    #242424
+  );
+// background-color: #131313;
+// background-size: 20px 20px;
+
+$hightlight-color: rgb(210, 0, 0);
+
+/**========================================================================
+ *                           Override Defaults
+ *========================================================================**/
+// Override default variables before the import
+$body-bg: $composition1;
+$accordion-icon-active-color: $hightlight-color;
+$accordion-bg: $composition9;
+$primary: red;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-shadows: true;
+$enable-gradients: true;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+/**========================================================================
+ *                           Standards
+ *========================================================================**/
+$border-style: outset;
+$shadow: 0.5em 0.5em 1em $composition0;
+
+$heading1: Helvetica, Arial, sans-serif;
+$heading2: Garamond, serif;
+$bodytext: Garamond, serif;
+
+/**========================================================================
+ *                           Mixin
+ *========================================================================**/
+
+@mixin standardbox {
+  border: 1px solid $composition8;
+  box-shadow: 8px 8px 8px $composition0;
+  border-style: $border-style;
+}
+
+/**========================================================================
+ *                           Layout
+ *========================================================================**/
+// .container {
+//   max-width: '100%'; //This will make container to take screen width
+// }
+
+$assetImage: '../images';
+
+/**======================
+ *    According
+ *========================**/
+
+.accordion-button.collapsed {
+  background: $composition8;
+  color: $composition1;
+  transition: all 1s ease-in-out;
+}
+.accordion-button.open {
+  background: $composition7;
+  color: $composition2;
+  box-shadow: none;
+  border-style: none;
+}
+
+.accordion-body {
+  box-shadow: none;
+  transition: all 1s ease-in-out;
+  // border-style: $border-style;
+}
+
+.accordion-button {
+  box-shadow: $shadow;
+  border-style: $border-style;
+  transition: all 1s ease-in-out;
+}
+// .accordion-button.active {
+//   color: red;
+// }
+// .accordion-header {
+//   color: red;
+// }
+
+.accordion-button:focus {
+  z-index: 3;
+  border-color: $hightlight-color;
+  background: $composition9;
+  outline: 0;
+  box-shadow: $shadow;
+  transition: all 1s ease-in-out;
+}
+
+.accordion-button:not(.collapsed) {
+  color: $composition0;
+  background-color: $composition9;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
+  transition: all 1s ease-in-out;
+}
+
+/**========================================================================
+ *                           Layout
+ *========================================================================**/
+
+/**============================================
+ *               Header
+ *=============================================**/
+header {
+  height: 800px;
+
+  width: 100%;
+  background-size: cover !important;
+
+  #banner {
+    margin: 0px 0px;
+    padding: 200px 0px;
+
+    .banner {
+      margin: 0px 0px;
+      padding: 0px 0px;
+      text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
+      border: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0.6em 0.6em 1em $composition0;
+      border-style: $border-style;
+    }
+
+    .banner-text {
+      border: rgba(0, 0, 0, 1);
+      h1 {
+        font: bold 5em/1.1em $heading1;
+        color: #fff;
+        letter-spacing: -2px;
+      }
+      h3 {
+        font: 18px/1.9em $heading2;
+        color: $composition9;
+
+        text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
+        span,
+        a {
+          color: $composition9;
+        }
+      }
+    }
+
+    .keyword {
+      display: inline-block;
+      list-style-type: none;
+      margin: 0 30px;
+    }
+
+    .social {
+      font-size: 30px;
+      text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
+      li {
+        display: inline-block;
+        margin: 0 15px;
+        a {
+          color: #fff;
+          transition: all 0.5s ease-in-out;
+          &:hover {
+            color: $hightlight-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**============================================
+ *               Combined Sections
+ *=============================================**/
+
+#about,
+#resume,
+#gallery {
+  overflow: hidden;
+  border: 1px solid $composition8;
+  box-shadow: 0.5em 0.5em 1em $composition0;
+  border-style: $border-style;
+  padding: 72px 0px;
+
+  h1 {
+    font: bold 36px/36px $heading1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+    span {
+      border-bottom: 3px solid $composition2;
+      // padding-bottom: 3px;
+      border-bottom-style: groove;
+    }
+  }
+  h2 {
+    font: bold 33px/50px $heading2;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    font: 25px/30px $heading1;
+  }
+  h4 {
+    font: 20px/25px $heading2;
+  }
+  h5 {
+    font: italic 16px/20px $heading1;
+  }
+
+  p {
+    line-height: 30px;
+    font: $bodytext;
+  }
+}
+
+/**============================================
+ *               About
+ *=============================================**/
+
+#about {
+  background: $composition5;
+  background-image: radial-gradient($composition7, $composition5);
+
+  h2 {
+    color: #fff;
+  }
+
+  p {
+    color: #7a7a7a;
+  }
+
+  .profile-pic {
+    @include standardbox;
+  }
+  .bio {
+    @include standardbox;
+    background: $composition2;
+  }
+}
+
+/**============================================
+ *               Resume
+ *=============================================**/
+
+#resume {
+  #education,
+  #work,
+  #craft {
+    // overflow: hidden;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    background-color: $composition4;
+    background-image: radial-gradient($composition5, $composition4);
+    border: 1px solid $composition8;
+    @include standardbox;
+  }
+
+  .barskill {
+    width: 100%;
+    // background-color: $composition4;
+    background-image: radial-gradient($composition5, $composition4);
+    box-sizing: border-box;
+    padding-left: 0px;
+    box-shadow: 1px 1px 2px $composition0;
+    border: 1px solid $composition1;
+  }
+  .skills {
+    text-align: right;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-left: 0px;
+    color: white;
+  }
+  .slabel {
+    color: $composition9;
+    font: $bodytext;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
+  }
+}
+
+/**============================================
+ *               Gallery
+ *=============================================**/
+
+#gallery {
+  #artwork {
+    background-color: $composition4;
+    background-image: radial-gradient($composition5, $composition4);
+    border: 1px solid $composition8;
+    @include standardbox;
+  }
+  @media (max-width: 688px) {
+    .carousel-item > img {
+      max-height: 146px;
+    }
+  }
+}
+
+/**============================================
+ *               Stack
+ *=============================================**/
+
+#stack {
+  border: 1px solid $composition8;
+  @include standardbox;
+  text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+
+  h4 {
+    color: $composition9;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+  }
+
+  Button {
+    font: 33px/50px $heading1;
+    color: $composition9;
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.9);
+    // margin: 0px 1px 3px 0px;
+    @include standardbox;
+  }
+
+  .figure {
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* h. Contact Section
+/* ------------------------------------------------------------------ */
+
+#contact {
+  background: #191919;
+  color: $composition2;
+  margin: 25px;
+
+  a,
+  a:visited {
+    color: $hightlight-color;
+  }
+
+  a:hover,
+  a:focus {
+    color: #fff;
+  }
+
+  h1 {
+    font: 18px/24px $heading1;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #ebeeee;
+    margin-bottom: 4px;
+    &:before {
+      font-family: 'FontAwesome';
+      content: '\f0e0';
+      padding-right: 10px;
+      font-size: 72px;
+      line-height: 72px;
+      text-align: left;
+      float: left;
+      color: $hightlight-color;
+    }
+  }
+
+  h4 {
+    font: 16px/24px $heading2;
+    color: #ebeeee;
+    margin: 6px;
+  }
+  .contactbuttons a {
+    display: inline-block;
+    padding: 0px 0px;
+    margin: 5px 30px;
+  }
+}
+
+/**============================================
+ *               Footer
+ *=============================================**/
+
+footer {
+  padding-top: 48px;
+  margin-bottom: 48px;
+  color: #303030;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  a,
+  a:visited {
+    color: #525252;
+  }
+  a:hover,
+  a:focus {
+    color: $hightlight-color;
+    transition: all 1s ease-in-out;
+  }
+
+  .copyright {
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      line-height: 24px;
+      &:before {
+        content: '\2022';
+        padding-left: 10px;
+        padding-right: 10px;
+        color: $hightlight-color;
+      }
+      &:first-child:before {
+        display: none;
+      }
+    }
+  }
+  .social-links {
+    margin: 18px 0 30px 0;
+    padding: 0;
+    font-size: 30px;
+    li {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      margin-left: 42px;
+      color: $hightlight-color;
+    }
+    li:first-child {
+      margin-left: 0;
+    }
+  }
+}
