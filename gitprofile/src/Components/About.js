@@ -43,7 +43,7 @@ class About extends Component {
                   <p>{bio}</p>
                 </Col>
               </Row>
-              <Row className='justify-content-end'>
+              {/* <Row className='justify-content-end'>
                 <Col>
                   <a href='/forms/Travis_Prall_Resume_IT.pdf' download>
                     <Button variant='dark' size='sm'>
@@ -51,7 +51,7 @@ class About extends Component {
                     </Button>
                   </a>
                 </Col>
-              </Row>
+              </Row> */}
             </Col>
           </Row>
         </Container>
