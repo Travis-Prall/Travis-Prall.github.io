@@ -5,7 +5,7 @@ import About from './Components/About';
 import Resume from './Components/Resume';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
-import profileData from '../public/profileData.json';
+import profileData from './profileData.json';
 
 
 class App extends Component {
