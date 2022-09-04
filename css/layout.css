@@ -13,11 +13,11 @@ body {
 }
 
 header {
-  background: #161415 url(/images/background.png) no-repeat top center;
+  background: #161415 url(https://travisprall/images/background.png) no-repeat top center;
 }
 
 #stack {
-  background: #161415 url(/images/prism.png) repeat;
+  background: #161415 url(https://travisprall/images/prism.png) repeat;
 }
 
 /* header .banner-text h1 {
@@ -29,6 +29,6 @@ header {
 } */
 
 #resume {
-  background: #161415 url(/images/dark-honeycomb.png) repeat;
+  background: #161415 url(https://travisprall/images/dark-honeycomb.png) repeat;
   background-attachment: fixed;
 }
