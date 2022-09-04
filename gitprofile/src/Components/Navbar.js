@@ -22,9 +22,6 @@ class MainNav extends Component {
                   <Nav.Link href='#resume'>Resume</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as='li' className='me-auto'>
-                  <Nav.Link href='#stack'>Stack</Nav.Link>
-                </Nav.Item>
-                <Nav.Item as='li' className='me-auto'>
                   <Nav.Link href='#contact'>Contact</Nav.Link>
                 </Nav.Item>
               </Nav>
