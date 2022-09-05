@@ -209,7 +209,8 @@ header {
 
 #about,
 #resume,
-#gallery {
+#photography,
+#decor {
   overflow: hidden;
   border: 1px solid $composition8;
   box-shadow: 0.5em 0.5em 1em $composition0;
@@ -317,7 +318,9 @@ header {
  *               Gallery
  *=============================================**/
 
-#gallery {
+.art {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
   #artwork {
     background-color: $composition4;
     background-image: radial-gradient($composition5, $composition4);
