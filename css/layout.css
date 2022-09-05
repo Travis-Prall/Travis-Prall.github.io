@@ -28,7 +28,7 @@ header {
     -webkit-font-smoothing: antialiased;
 } */
 
-#resume {
+#resume, .art {
   background: #161415 url(/images/dark-honeycomb.png) repeat;
   background-attachment: fixed;
 }
