@@ -1,12 +1,9 @@
-// import React, { Component } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { useLocation, NavLink, Outlet } from 'react-router-dom';
 
 function MainNav() {
-  const location = useLocation();
-  console.log(location);
   return (
     <Container fluid>
       <Row>
@@ -24,7 +21,6 @@ function MainNav() {
 
 function MainTabs() {
   const location = useLocation();
-  console.log(location);
   if (location.pathname === '/') {
     return (
       <Nav className='justify-content-start' defaultActiveKey='#home'>
