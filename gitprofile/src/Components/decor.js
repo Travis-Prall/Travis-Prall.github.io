@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Gallery() {
+function Decor() {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -12,104 +12,79 @@ function Gallery() {
   };
 
   return (
-    <section id='photography' className='art'>
+    <section id='decor' className='art'>
       <Container fluid>
         <Row className='justify-content-md-center' id='artwork'>
           <Col sm={2}>
             <h1>
-              <span>Photography</span>
+              <span>Home Decor</span>
             </h1>
           </Col>
           <Col sm={8}>
             <Carousel activeIndex={index} onSelect={handleSelect}>
+
               <Carousel.Item>
                 <img
                   className='d-block float-right'
-                  src='images/Dan.jpg'
+                  src='images/home1.jpg'
                   height='600'
-                  alt='Dan'
+                  alt='Entryway'
                 />
                 <Carousel.Caption>
-                  <h3>Dan</h3>
-                  <p>Phototaken and edited by me</p>
+                  <h3>Entryway</h3>
+                  <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
               </Carousel.Item>
 
               <Carousel.Item>
                 <img
                   className='d-block float-right'
-                  src='images/Sin City.jpg'
+                  src='images/home2.jpg'
                   height='600'
-                  alt='Sin City 1'
+                  alt='Living Room'
                 />
                 <Carousel.Caption>
-                  <h3>Sin City</h3>
-                  <p>Photoshot with photography rendered through photoshop</p>
+                  <h3>Living Room</h3>
+                  <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
               </Carousel.Item>
 
               <Carousel.Item>
                 <img
                   className='d-block float-right'
-                  src='images/Sin City 2.jpg'
+                  src='images/home3.jpg'
                   height='600'
-                  alt='Sin City 2'
+                  alt='Living Room 2'
                 />
                 <Carousel.Caption>
-                  <h3>Sin City</h3>
-                  <p>Photoshot with photography rendered through photoshop</p>
+                  <h3>Living Room</h3>
+                  <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
               </Carousel.Item>
 
               <Carousel.Item>
                 <img
                   className='d-block float-right'
-                  src='images/Sin City Matrix Battle.jpg'
+                  src='images/home4.jpg'
                   height='600'
-                  alt='Sin City 3'
+                  alt='Stairwell'
                 />
                 <Carousel.Caption>
-                  <h3>Sin City</h3>
-                  <p>Photoshot with photography rendered through photoshop</p>
+                  <h3>Stairs</h3>
+                  <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
               </Carousel.Item>
 
               <Carousel.Item>
                 <img
                   className='d-block float-right'
-                  src='images/Mirror.jpg'
+                  src='images/home5.jpg'
                   height='600'
-                  alt='Mirror'
+                  alt='Egyptian Wall Mural'
                 />
                 <Carousel.Caption>
-                  <h3>Mirror</h3>
-                  <p>Photoshot with photography rendered through photoshop</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-
-              <Carousel.Item>
-                <img
-                  className='d-block float-right'
-                  src='images/See no Evil Hear no Evil Speak no Evil.jpg'
-                  height='600'
-                  alt='monkies'
-                />
-                <Carousel.Caption>
-                  <h3>See no Evil Hear no Evil Speak no Evil</h3>
-                  <p>Phototaken and edited by me</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-
-              <Carousel.Item>
-                <img
-                  className='d-block float-right'
-                  src='images/Brittney.jpg'
-                  height='600'
-                  alt='Jessica'
-                />
-                <Carousel.Caption>
-                  <h3>Jessica</h3>
-                  <p>Phototaken and edited by me</p>
+                  <h3>Egyptian Wall Mural</h3>
+                  <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
               </Carousel.Item>
 
@@ -121,4 +96,4 @@ function Gallery() {
   );
 }
 
-export default Gallery;
+export default Decor;
