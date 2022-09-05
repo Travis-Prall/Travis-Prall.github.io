@@ -4,15 +4,6 @@ import Paths from "./pages/paths";
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'Travis Prall',
-      resumeData: [],
-    };
-  }
-
-
   render() {
     return (
       <div className='App'>
@@ -22,9 +13,5 @@ class App extends Component {
     );
   }
 }
-
-
-
-
 
 export default App;
