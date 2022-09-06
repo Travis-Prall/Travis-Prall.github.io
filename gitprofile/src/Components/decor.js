@@ -12,15 +12,15 @@ function Decor() {
   };
 
   return (
-    <section id='decor' className='art'>
+    <section id='decor' className='my-4'>
       <Container fluid>
         <Row className='justify-content-md-center' id='artwork'>
-          <Col sm={2}>
+          <Col lg={3}>
             <h1>
               <span>Home Decor</span>
             </h1>
           </Col>
-          <Col sm={8}>
+          <Col lg={9}>
             <Carousel activeIndex={index} onSelect={handleSelect}>
 
               <Carousel.Item>

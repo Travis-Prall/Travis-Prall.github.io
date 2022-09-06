@@ -14,27 +14,21 @@ class Contact extends Component {
     }
 
     return (
-      <section id='contact'>
+      <section id='contact' className='m-4'>
         <Container fluid>
-          <Row className='justify-content-md-center'>
-            <Col lg={6} className='myinfo'>
+          <Row className='justify-content-center'>
+            <Col className='myinfo'>
               <h1>Contact</h1>
               <h4>{name}</h4>
-              <p>
-                {city},{state}
-              </p>
+              <h5>{city}, {state}</h5>
             </Col>
-            <Col lg='auto' className='contactbuttons'>
+            <Col className='contactbuttons'>
               <a href={'mailto:' + email}>
                 <Button variant='dark' size='lg'>
                   Email Me
                 </Button>
-              </a>
-              <a href='https://freesuggestionbox.com/pub/gjrttsx'>
-                <Button variant='dark' size='lg'>
-                  FeedBack
-                </Button>
-              </a>
+              </a></Col>
+              <Col className='contactbuttons'>
               <a
                 href='https://www.buymeacoffee.com/travisprall'
                 target='_blank'>
@@ -45,8 +39,7 @@ class Contact extends Component {
                     height: '60px',
                     width: '217px',
                   }}></img>
-              </a>
-            </Col>
+              </a></Col>
           </Row>
         </Container>
       </section>

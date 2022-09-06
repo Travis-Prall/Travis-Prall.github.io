@@ -25,10 +25,10 @@ class About extends Component {
     }
 
     return (
-      <section id='about'>
+      <section id='about' className='my-4'>
         <Container fluid>
           <Row className='justify-content-center'>
-            <Col lg={3}>
+            <Col lg={3} className='p-3'>
               <Image
                 src='/images/profile_image.jpg'
                 className='profile-pic'

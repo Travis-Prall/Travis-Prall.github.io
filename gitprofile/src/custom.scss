@@ -142,57 +142,48 @@ $assetImage: '../images';
  *=============================================**/
 header {
   height: 800px;
-
   width: 100%;
   background-size: cover !important;
 
   #banner {
-    margin: 0px 0px;
     padding: 200px 0px;
+    text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
 
     .banner {
-      margin: 0px 0px;
-      padding: 0px 0px;
-      text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
       border: rgba(0, 0, 0, 0.1);
       background: rgba(0, 0, 0, 0.4);
       box-shadow: 0.6em 0.6em 1em $composition0;
       border-style: $border-style;
     }
 
-    .banner-text {
-      border: rgba(0, 0, 0, 1);
-      h1 {
-        font: bold 5em/1.1em $heading1;
-        color: #fff;
-        letter-spacing: -2px;
-      }
-      h3 {
-        font: 18px/1.9em $heading2;
+    h1 {
+      font: bold 4em/1em $heading1;
+      color: $composition9;
+    }
+    h4 {
+      font: $heading2;
+      color: $composition9;
+      span,
+      a {
         color: $composition9;
-
-        text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
-        span,
-        a {
-          color: $composition9;
-        }
       }
     }
 
-    .keyword {
-      display: inline-block;
+    #keyword {
+      display: flex;
+      justify-content: center;
       list-style-type: none;
-      margin: 0 30px;
+      font: 1.5em/2em $heading2;
+      color: $composition9;
     }
 
     .social {
-      font-size: 30px;
+      font-size: 2em;
       text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
       li {
-        display: inline-block;
-        margin: 0 15px;
+        display: inline-flex;
         a {
-          color: #fff;
+          color: $composition8;
           transition: all 0.5s ease-in-out;
           &:hover {
             color: $hightlight-color;
@@ -209,29 +200,25 @@ header {
 
 #about,
 #resume,
-#photography,
+#gallery,
 #decor {
   overflow: hidden;
   border: 1px solid $composition8;
   box-shadow: 0.5em 0.5em 1em $composition0;
   border-style: $border-style;
-  padding: 72px 0px;
 
   h1 {
-    font: bold 36px/36px $heading1;
+    font: bold 2em/2em $heading1;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
     span {
       border-bottom: 3px solid $composition2;
-      // padding-bottom: 3px;
       border-bottom-style: groove;
     }
   }
   h2 {
-    font: bold 33px/50px $heading2;
-    margin-top: 12px;
-    margin-bottom: 12px;
+    font: bold 2em/2em $heading2;
   }
   h3 {
     font: 25px/30px $heading1;
@@ -244,6 +231,7 @@ header {
   }
 
   p {
+    color: $composition2;
     line-height: 30px;
     font: $bodytext;
   }
@@ -258,11 +246,11 @@ header {
   background-image: radial-gradient($composition7, $composition5);
 
   h2 {
-    color: #fff;
+    color: $composition9;
   }
 
   p {
-    color: #7a7a7a;
+    color: $composition8;
   }
 
   .profile-pic {
@@ -282,9 +270,6 @@ header {
   #education,
   #work,
   #craft {
-    // overflow: hidden;
-    margin-bottom: 48px;
-    padding-bottom: 24px;
     background-color: $composition4;
     background-image: radial-gradient($composition5, $composition4);
     border: 1px solid $composition8;
@@ -318,9 +303,7 @@ header {
  *               Gallery
  *=============================================**/
 
-.art {
-  margin-bottom: 48px;
-  padding-bottom: 24px;
+#decor,#gallery {
   #artwork {
     background-color: $composition4;
     background-image: radial-gradient($composition5, $composition4);
@@ -334,44 +317,14 @@ header {
   }
 }
 
-/**============================================
- *               Stack
- *=============================================**/
-
-#stack {
-  border: 1px solid $composition8;
-  @include standardbox;
-  text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
-
-  h4 {
-    color: $composition9;
-    margin: 0 auto;
-    justify-content: center;
-    text-align: center;
-  }
-
-  Button {
-    font: 33px/50px $heading1;
-    color: $composition9;
-    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.9);
-    // margin: 0px 1px 3px 0px;
-    @include standardbox;
-  }
-
-  .figure {
-    justify-content: center;
-    margin: 0 auto;
-  }
-}
 
 /* ------------------------------------------------------------------ */
 /* h. Contact Section
 /* ------------------------------------------------------------------ */
 
 #contact {
-  background: #191919;
+  background: $composition1;
   color: $composition2;
-  margin: 25px;
 
   a,
   a:visited {
@@ -388,28 +341,25 @@ header {
     text-transform: uppercase;
     letter-spacing: 3px;
     color: #ebeeee;
-    margin-bottom: 4px;
     &:before {
       font-family: 'FontAwesome';
       content: '\f0e0';
       padding-right: 10px;
-      font-size: 72px;
-      line-height: 72px;
-      text-align: left;
+      font-size: 94px;
+      line-height: 94px;
       float: left;
       color: $hightlight-color;
     }
   }
 
-  h4 {
-    font: 16px/24px $heading2;
+  h4,
+  h5 {
+    font: 12px/24px $heading2;
     color: #ebeeee;
-    margin: 6px;
   }
   .contactbuttons a {
-    display: inline-block;
-    padding: 0px 0px;
-    margin: 5px 30px;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -418,12 +368,9 @@ header {
  *=============================================**/
 
 footer {
-  padding-top: 48px;
-  margin-bottom: 48px;
-  color: #303030;
-  font-size: 14px;
+  background: $composition1;
+  color: $composition6;
   text-align: center;
-  position: relative;
   a,
   a:visited {
     color: #525252;
@@ -434,38 +381,24 @@ footer {
     transition: all 1s ease-in-out;
   }
 
-  .copyright {
-    margin: 0;
-    padding: 0;
-    li {
-      display: inline-block;
-      margin: 0;
-      padding: 0;
-      line-height: 24px;
-      &:before {
-        content: '\2022';
-        padding-left: 10px;
-        padding-right: 10px;
-        color: $hightlight-color;
-      }
-      &:first-child:before {
-        display: none;
-      }
-    }
-  }
   .social-links {
-    margin: 18px 0 30px 0;
-    padding: 0;
-    font-size: 30px;
+    font-size: 2em;
     li {
-      display: inline-block;
-      margin: 0;
-      padding: 0;
-      margin-left: 42px;
+      display: inline-flex;
+      justify-content: center;
       color: $hightlight-color;
     }
-    li:first-child {
-      margin-left: 0;
+  }
+
+  .copyright {
+    display: flex;
+    justify-content: center;
+    color: $composition5;
+    &:before {
+      content: '\2022';
+    }
+    &:first-child:before {
+      display: none;
     }
   }
 }

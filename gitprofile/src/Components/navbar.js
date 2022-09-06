@@ -5,7 +5,7 @@ import { useLocation, NavLink, Outlet } from 'react-router-dom';
 
 function MainNav() {
   return (
-    <Container fluid>
+    <Container fluid className='pb-5'>
       <Row>
         <Navbar expand='sm' bg='dark' variant='dark' fixed='top'>
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />

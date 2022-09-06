@@ -8,22 +8,18 @@ import Badge from 'react-bootstrap/Badge';
 class Header extends Component {
   render() {
     if (this.props.data) {
-      var name = this.props.toplevel.name;
+      var personname = this.props.toplevel.name;
       // var city = this.props.toplevel.city;
       var keywords = this.props.toplevel.keywords.map(function (keyword) {
         return (
-          <li key={keyword.word} className='keyword'>
-            <h4>
-              <Badge bg='dark' className='keywordButton'>
+              <Badge key={keyword.word} bg='dark' className='m-2'>
                 {keyword.word}
               </Badge>
-            </h4>
-          </li>
         );
       });
       var networks = this.props.data.social.map(function (network) {
         return (
-          <li key={network.name}>
+          <li className='m-3' key={network.name}>
             <a href={network.url}>
               <i className={network.className}></i>
             </a>
@@ -31,35 +27,29 @@ class Header extends Component {
         );
       });
     } else {
-      var name = 'Travis Prall';
+      var personname = 'Travis Prall';
     }
 
     return (
       <header id='home'>
         <Container fluid id='banner'>
           <Row className='justify-content-center'>
-            <Col sm={6}>
-              <Container className='banner'>
+            <Col xs={6} className='banner'>
                 <Row className='justify-content-center'>
-                  <Col md='auto' className='banner-text'>
-                    <Row className='justify-content-center'>
-                      <Col xs='auto'>
-                        <h1>{name}</h1>
-                      </Col>
-                    </Row>
-                    <Row className='justify-content-center'>
-                      <Col xs='auto'>
-                        <ul className='keywords'>{keywords}</ul>
-                      </Col>
-                    </Row>
-                    <Row className='justify-content-center'>
-                      <Col xs='auto'>
-                        <ul className='social'>{networks}</ul>
-                      </Col>
-                    </Row>
+                  <Col xs='auto'>
+                    <h1>{personname}</h1>
                   </Col>
                 </Row>
-              </Container>
+                <Row className='justify-content-center'>
+                  <Col xs='auto' id='keyword'>
+                    {keywords}
+                  </Col>
+                </Row>
+                <Row className='justify-content-center'>
+                  <Col xs='auto'>
+                    <ul className='social'>{networks}</ul>
+                  </Col>
+                </Row>
             </Col>
           </Row>
         </Container>

@@ -9,7 +9,7 @@ class Resume extends Component {
     if (this.props.data) {
       var education = this.props.data.education.map(function (education) {
         return (
-          <div key={education.school}>
+          <div key={education.school} className='my-3'>
             <Accordion flush>
               <Accordion.Item eventKey={education.school}>
                 <Accordion.Header className='info'>
@@ -17,7 +17,7 @@ class Resume extends Component {
                     <Col md='auto'>
                       <i
                         className='fas fa-graduation-cap'
-                        style={{ fontSize: '40px', margin: '20px' }}></i>
+                        style={{ fontSize: '2em' }}></i>
                     </Col>
                     <Col md='auto'>
                       <Row>
@@ -47,7 +47,7 @@ class Resume extends Component {
       });
       var work = this.props.data.work.map(function (work) {
         return (
-          <div key={work.company}>
+          <div key={work.company} className='my-3'>
             <Accordion flush>
               <Accordion.Item eventKey={work.company}>
                 <Accordion.Header className='info'>
@@ -79,8 +79,8 @@ class Resume extends Component {
       });
       var craft = this.props.data.craft.map(function (craft) {
         return (
-          <div key={craft.name}>
-            <Accordion flush defaultActiveKey={craft.name}>
+          <div key={craft.name} className='my-3'>
+            <Accordion flush >
               <Accordion.Item eventKey={craft.name}>
                 <Accordion.Header className='info'>
                   <Row>
@@ -102,8 +102,8 @@ class Resume extends Component {
       return (
         <section id='resume'>
           <Container fluid>
-            <Row className='justify-content-center' id='education'>
-              <Col lg={3}>
+            <Row className='my-4 justify-content-center' id='education'>
+              <Col lg={3} className='p-3'>
                 <h1>
                   <span>Education</span>
                 </h1>
@@ -111,8 +111,8 @@ class Resume extends Component {
               <Col lg={9}>{education}</Col>
             </Row>
 
-            <Row className='justify-content-center' id='work'>
-              <Col lg={3}>
+            <Row className='my-4 justify-content-center' id='work'>
+              <Col lg={3} className='p-3'>
                 <h1>
                   <span>Work</span>
                 </h1>
@@ -121,8 +121,8 @@ class Resume extends Component {
               <Col lg={9}>{work}</Col>
             </Row>
 
-            <Row className='justify-content-center' id='craft'>
-              <Col lg={3}>
+            <Row className='my-4 justify-content-center' id='craft'>
+              <Col lg={3} className='p-3'>
                 <h1>
                   <span>Skills</span>
                 </h1>

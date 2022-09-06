@@ -12,15 +12,15 @@ function Gallery() {
   };
 
   return (
-    <section id='photography' className='art'>
+    <section id='gallery' className='my-4'>
       <Container fluid>
         <Row className='justify-content-md-center' id='artwork'>
-          <Col sm={2}>
+          <Col lg={3}>
             <h1>
               <span>Photography</span>
             </h1>
           </Col>
-          <Col sm={8}>
+          <Col lg={9}>
             <Carousel activeIndex={index} onSelect={handleSelect}>
               <Carousel.Item>
                 <img
