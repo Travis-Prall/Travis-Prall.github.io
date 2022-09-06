@@ -3,6 +3,8 @@ import Navbar from './Components/navbar';
 import Paths from "./pages/paths";
 
 
+
+
 class App extends Component {
   render() {
     return (
