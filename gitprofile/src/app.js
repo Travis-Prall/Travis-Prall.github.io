@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Navbar from './Components/navbar';
 import Footer from './Components/footer';
-import Paths from "./pages/paths";
+import Paths from './pages/paths';
 import profileData from './profileData.json';
-
-
+import ReactGA from 'react-ga';
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +12,8 @@ class App extends Component {
       name: 'Travis Prall',
       resumeData: profileData,
     };
+    ReactGA.initialize('UA-209754722-1');
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   render() {
