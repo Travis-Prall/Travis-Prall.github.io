@@ -9,8 +9,8 @@ import Placeholder from 'react-bootstrap/Placeholder';
 
 class About extends Component {
   render() {
-    if (this.props.data) {
-      var bio = this.props.data.bio;
+    if (this.props.resumeData) {
+      var bio = this.props.resumeData.main.bio;
     } else {
       var bio = (
         <Placeholder as='p' animation='glow'>

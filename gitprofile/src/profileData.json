@@ -1,32 +1,41 @@
 {
   "name": "Travis Prall",
-  "email": "mosbjf04o@mozmail.com",
-  "city": "Phoenix",
-  "state": "Arizona",
   "main": {
-    "occupation": "programmer",
-    "description": "",
     "bio": "Travis Prall is a military veteran and experienced healthcare professional with a diverse background in conducting research, pharmacology, clinical pathology, biology, and performing clinical laboratory procedures. He holds a B.S. in Animal Physiology & Behavior, and a B.S. in Clinical Laboratory Science from DeVry University. In his 17+ year career history, Travis has served in such roles as Pharmacy Technician, Veterinary Technician, and Contract Specialist. As a Contract Specialist, while serving on active duty in the United States Air Force, he developed skills in research, analysis, attention to detail, quality control, compliance enforcement, and leading teams. Travis easily transitioned to a medical career after receiving an honorable discharge for his military service. His extensive background in the medical field has helped him to further develop his knowledge and passion for clinical laboratory science. He has firsthand experience with laboratory testing & analysis, research and evaluations, instrument maintenance, therapeutic drug monitoring, chemical safety & compounding, pharmaceutical supply & inventory management, and providing patient-centered care. He also is experienced with handling health insurance, performing quality control functions, performing chemical transformations & specimen management, and successfully leading teams.",
     "social": [
       {
+        "name": "Email",
+        "url": "mailto:mosbjf04o@mozmail.com",
+        "className": "fa fa-envelope",
+        "tip": "Email me"
+      },
+      {
         "name": "facebook",
         "url": "https://www.facebook.com/travis.prall",
-        "className": "fa fa-facebook"
+        "className": "fa fa-facebook",
+        "tip": "Facebook"
       },
       {
         "name": "github",
         "url": "https://github.com/Travis-Prall",
-        "className": "fa fa-github"
+        "className": "fa fa-github",
+        "tip": "GitHub"
       },
       {
         "name": "linkedin",
         "url": "https://www.linkedin.com/in/travisprall/",
-        "className": "fa fa-linkedin"
+        "className": "fa fa-linkedin",
+        "tip": "LinkedIn"
+      },
+      {
+        "name": "Coffee",
+        "url": "https://www.buymeacoffee.com/travisprall",
+        "className": "fa fa-mug-hot",
+        "tip": "Buy me a Coffee"
       }
     ]
   },
   "resume": {
-    "resume_type": "Programmer",
     "education": [
       {
         "school": "Devry",

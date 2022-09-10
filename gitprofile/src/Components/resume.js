@@ -3,13 +3,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Accordion } from 'react-bootstrap';
+import {Charts} from './bars';
 
 class Resume extends Component {
   render() {
-    if (this.props.data) {
-      var education = this.props.data.education.map(function (education) {
+    if (this.props.resumeData) {
+      var education = this.props.resumeData.education.map(function (education) {
         return (
-          <div key={education.school} className='my-3'>
+          <Container fluid key={education.school} className='my-3'>
             <Accordion flush>
               <Accordion.Item eventKey={education.school}>
                 <Accordion.Header className='info'>
@@ -42,12 +43,12 @@ class Resume extends Component {
                 <Accordion.Body>{education.description}</Accordion.Body>
               </Accordion.Item>
             </Accordion>
-          </div>
+          </Container>
         );
       });
-      var work = this.props.data.work.map(function (work) {
+      var work = this.props.resumeData.work.map(function (work) {
         return (
-          <div key={work.company} className='my-3'>
+          <Container fluid key={work.company} className='my-3'>
             <Accordion flush>
               <Accordion.Item eventKey={work.company}>
                 <Accordion.Header className='info'>
@@ -74,12 +75,12 @@ class Resume extends Component {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
-          </div>
+          </Container>
         );
       });
-      var craft = this.props.data.craft.map(function (craft) {
+      var craft = this.props.resumeData.craft.map(function (craft) {
         return (
-          <div key={craft.name} className='my-3'>
+          <Container fluid key={craft.name} className='my-3'>
             <Accordion flush >
               <Accordion.Item eventKey={craft.name}>
                 <Accordion.Header className='info'>
@@ -94,11 +95,11 @@ class Resume extends Component {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
-          </div>
+          </Container>
         );
       });
     }
-    if (this.props.data) {
+    if (this.props.resumeData) {
       return (
         <section id='resume'>
           <Container fluid>
