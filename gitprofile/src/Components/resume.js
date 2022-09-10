@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Accordion } from 'react-bootstrap';
-import {Charts} from './bars';
 
 class Resume extends Component {
   render() {
@@ -81,7 +80,7 @@ class Resume extends Component {
       var craft = this.props.resumeData.craft.map(function (craft) {
         return (
           <Container fluid key={craft.name} className='my-3'>
-            <Accordion flush >
+            <Accordion flush>
               <Accordion.Item eventKey={craft.name}>
                 <Accordion.Header className='info'>
                   <Row>
@@ -145,18 +144,30 @@ function SkillBars(props) {
     <ul key={skill.name}>
       <h3>{skill.name}</h3>
       <Container fluid className='barskill'>
-        <Row
-          className='skills'
-          style={{
-            width: skill.progress + '%',
-            backgroundColor: skill.color,
-          }}>
-          <span className='slabel'>{skill.progress}%</span>
-        </Row>
+        <ProgressBar skill={skill}></ProgressBar>
       </Container>
     </ul>
   ));
   return <Container>{SkillArray}</Container>;
+}
+
+function ProgressBar(props) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    setValue(props.skill.progress);
+  });
+  console.log(value);
+  return (
+    <Row
+      className='skills'
+      style={{
+        width: value + '%',
+        backgroundColor: props.skill.color,
+      }}>
+      <span className='slabel'>{props.skill.progress}%</span>
+    </Row>
+  );
 }
 
 export default Resume;

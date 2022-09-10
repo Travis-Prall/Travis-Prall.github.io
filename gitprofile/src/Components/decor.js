@@ -6,7 +6,9 @@ import Col from 'react-bootstrap/Col';
 
 function Decor() {
   const [index, setIndex] = useState(0);
-
+  let display = 'd-none d-md-block';
+  let height = '600';
+  let Ialignment = 'd-inline float-right';
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
@@ -15,22 +17,21 @@ function Decor() {
     <section id='decor' className='my-4'>
       <Container fluid>
         <Row className='justify-content-md-center' id='artwork'>
-          <Col lg={3}>
+          <Col lg={2}>
             <h1>
               <span>Home Decor</span>
             </h1>
           </Col>
-          <Col lg={9}>
+          <Col lg={10}>
             <Carousel activeIndex={index} onSelect={handleSelect}>
-
               <Carousel.Item>
                 <img
-                  className='d-block float-right'
+                  className={Ialignment}
                   src='images/home1.jpg'
-                  height='600'
+                  height={height}
                   alt='Entryway'
                 />
-                <Carousel.Caption>
+                <Carousel.Caption className={display}>
                   <h3>Entryway</h3>
                   <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
@@ -38,12 +39,12 @@ function Decor() {
 
               <Carousel.Item>
                 <img
-                  className='d-block float-right'
+                  className={Ialignment}
                   src='images/home2.jpg'
-                  height='600'
+                  height={height}
                   alt='Living Room'
                 />
-                <Carousel.Caption>
+                <Carousel.Caption className={display}>
                   <h3>Living Room</h3>
                   <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
@@ -51,12 +52,12 @@ function Decor() {
 
               <Carousel.Item>
                 <img
-                  className='d-block float-right'
+                  className={Ialignment}
                   src='images/home3.jpg'
-                  height='600'
+                  height={height}
                   alt='Living Room 2'
                 />
-                <Carousel.Caption>
+                <Carousel.Caption className={display}>
                   <h3>Living Room</h3>
                   <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
@@ -64,12 +65,12 @@ function Decor() {
 
               <Carousel.Item>
                 <img
-                  className='d-block float-right'
+                  className={Ialignment}
                   src='images/home4.jpg'
-                  height='600'
+                  height={height}
                   alt='Stairwell'
                 />
-                <Carousel.Caption>
+                <Carousel.Caption className={display}>
                   <h3>Stairs</h3>
                   <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
@@ -77,17 +78,16 @@ function Decor() {
 
               <Carousel.Item>
                 <img
-                  className='d-block float-right'
+                  className={Ialignment}
                   src='images/home5.jpg'
-                  height='600'
+                  height={height}
                   alt='Egyptian Wall Mural'
                 />
-                <Carousel.Caption>
+                <Carousel.Caption className={display}>
                   <h3>Egyptian Wall Mural</h3>
                   <p>Wall Painting done by myself</p>
                 </Carousel.Caption>
               </Carousel.Item>
-
             </Carousel>
           </Col>
         </Row>

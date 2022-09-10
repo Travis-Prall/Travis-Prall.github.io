@@ -2,6 +2,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { useLocation, NavLink, Outlet } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 function MainNav() {
   return (
@@ -10,7 +11,7 @@ function MainNav() {
         <Navbar expand='sm' bg='dark' variant='dark' fixed='top'>
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
-          < MainTabs />
+            <MainTabs />
             <Outlet />
           </Navbar.Collapse>
         </Navbar>
@@ -59,7 +60,6 @@ function MainTabs() {
         </Nav.Item>
       </Nav>
     );
-  
   } else {
     return (
       <Nav className='justify-content-start' defaultActiveKey='#home'>

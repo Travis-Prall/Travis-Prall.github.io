@@ -17,23 +17,6 @@ $composition7: lighten($composition6, 10);
 $composition8: lighten($composition7, 10);
 $composition9: lighten($composition8, 10);
 
-$Carbon: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
-  linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
-  linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
-  linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
-  linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
-  linear-gradient(
-    #1d1d1d 25%,
-    #1a1a1a 25%,
-    #1a1a1a 50%,
-    transparent 50%,
-    transparent 75%,
-    #242424 75%,
-    #242424
-  );
-// background-color: #131313;
-// background-size: 20px 20px;
-
 $hightlight-color: rgb(210, 0, 0);
 
 /**========================================================================
@@ -59,6 +42,7 @@ $enable-gradients: true;
  *========================================================================**/
 $border-style: outset;
 $shadow: 0.5em 0.5em 1em $composition0;
+$text_shadow: 0.3rem 0.3rem 0.1rem rgba(0, 0, 0, 0.9);
 
 $heading1: Helvetica, Arial, sans-serif;
 $heading2: Garamond, serif;
@@ -77,9 +61,9 @@ $bodytext: Garamond, serif;
 /**========================================================================
  *                           Layout
  *========================================================================**/
-// .container {
-//   max-width: '100%'; //This will make container to take screen width
-// }
+.container {
+  max-width: '100%'; //This will make container to take screen width
+}
 
 $assetImage: '../images';
 
@@ -92,6 +76,7 @@ $assetImage: '../images';
   color: $composition1;
   transition: all 1s ease-in-out;
 }
+
 .accordion-button.open {
   background: $composition7;
   color: $composition2;
@@ -110,6 +95,7 @@ $assetImage: '../images';
   border-style: $border-style;
   transition: all 1s ease-in-out;
 }
+
 // .accordion-button.active {
 //   color: red;
 // }
@@ -141,13 +127,15 @@ $assetImage: '../images';
  *               Header
  *=============================================**/
 header {
-  height: 800px;
+  z-index: 0;
   width: 100%;
   background-size: cover !important;
 
   #banner {
-    padding: 200px 0px;
-    text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    text-shadow: $text_shadow;
+    display: inline;
+    justify-content: center;
 
     .banner {
       border: rgba(0, 0, 0, 0.1);
@@ -160,9 +148,11 @@ header {
       font: bold 4em/1em $heading1;
       color: $composition9;
     }
+
     h4 {
       font: $heading2;
       color: $composition9;
+
       span,
       a {
         color: $composition9;
@@ -170,23 +160,31 @@ header {
     }
 
     #keyword {
-      display: flex;
+      display: inline-block;
       justify-content: center;
-      list-style-type: none;
       font: 1.5em/2em $heading2;
       color: $composition9;
+
+      &:hover {
+        color: $hightlight-color;
+      }
     }
 
     .social {
       font-size: 2em;
-      text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.9);
+
       li {
         display: inline-flex;
+        justify-content: center;
+
         a {
           color: $composition8;
           transition: all 0.5s ease-in-out;
+
+          &:focus,
           &:hover {
             color: $hightlight-color;
+            transform: scale(1.25);
           }
         }
       }
@@ -202,8 +200,7 @@ header {
 #resume,
 #gallery,
 #decor {
-  overflow: hidden;
-  border: 1px solid $composition8;
+  border: 0.2em solid $composition8;
   box-shadow: 0.5em 0.5em 1em $composition0;
   border-style: $border-style;
 
@@ -212,27 +209,32 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.9);
+
     span {
       border-bottom: 3px solid $composition2;
       border-bottom-style: groove;
     }
   }
+
   h2 {
     font: bold 2em/2em $heading2;
   }
+
   h3 {
     font: 25px/30px $heading1;
   }
+
   h4 {
     font: 20px/25px $heading2;
   }
+
   h5 {
     font: italic 16px/20px $heading1;
   }
 
   p {
     color: $composition2;
-    line-height: 30px;
+    line-height: 2em;
     font: $bodytext;
   }
 }
@@ -247,6 +249,7 @@ header {
 
   h2 {
     color: $composition9;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
   }
 
   p {
@@ -256,6 +259,7 @@ header {
   .profile-pic {
     @include standardbox;
   }
+
   .bio {
     @include standardbox;
     background: $composition2;
@@ -278,20 +282,23 @@ header {
 
   .barskill {
     width: 100%;
-    // background-color: $composition4;
     background-image: radial-gradient($composition5, $composition4);
     box-sizing: border-box;
     padding-left: 0px;
     box-shadow: 1px 1px 2px $composition0;
     border: 1px solid $composition1;
   }
+
   .skills {
     text-align: right;
     padding-top: 8px;
     padding-bottom: 8px;
     margin-left: 0px;
     color: white;
+    transition: 5s ease;
+    transition-delay: 5s;
   }
+
   .slabel {
     color: $composition9;
     font: $bodytext;
@@ -303,63 +310,29 @@ header {
  *               Gallery
  *=============================================**/
 
-#decor,#gallery {
+#decor,
+#gallery {
+  h3 {
+    font: 2em/1.5em $heading2;
+    text-align: end;
+  }
+
+  p {
+    font: 1em/1.1em $heading1;
+    text-align: end;
+  }
+
   #artwork {
     background-color: $composition4;
     background-image: radial-gradient($composition5, $composition4);
     border: 1px solid $composition8;
     @include standardbox;
   }
+
   @media (max-width: 688px) {
     .carousel-item > img {
       max-height: 146px;
     }
-  }
-}
-
-
-/* ------------------------------------------------------------------ */
-/* h. Contact Section
-/* ------------------------------------------------------------------ */
-
-#contact {
-  background: $composition1;
-  color: $composition2;
-
-  a,
-  a:visited {
-    color: $hightlight-color;
-  }
-
-  a:hover,
-  a:focus {
-    color: #fff;
-  }
-
-  h1 {
-    font: 18px/24px $heading1;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #ebeeee;
-    &:before {
-      font-family: 'FontAwesome';
-      content: '\f0e0';
-      padding-right: 10px;
-      font-size: 94px;
-      line-height: 94px;
-      float: left;
-      color: $hightlight-color;
-    }
-  }
-
-  h4,
-  h5 {
-    font: 12px/24px $heading2;
-    color: #ebeeee;
-  }
-  .contactbuttons a {
-    display: flex;
-    justify-content: center;
   }
 }
 
@@ -369,36 +342,43 @@ header {
 
 footer {
   background: $composition1;
+  background-image: linear-gradient($composition1, $composition0);
   color: $composition6;
   text-align: center;
+
   a,
   a:visited {
     color: #525252;
   }
-  a:hover,
-  a:focus {
-    color: $hightlight-color;
-    transition: all 1s ease-in-out;
-  }
 
   .social-links {
     font-size: 2em;
+
     li {
       display: inline-flex;
       justify-content: center;
-      color: $hightlight-color;
+
+      a {
+        transition: all 0.5s ease-in-out;
+
+        &:focus,
+        &:hover {
+          color: $hightlight-color;
+          transform: scale(1.25);
+        }
+      }
     }
   }
-
-
 
   .copyright {
     display: flex;
     justify-content: center;
     color: $composition5;
+
     &:before {
       content: '\2022';
     }
+
     &:first-child:before {
       display: none;
     }

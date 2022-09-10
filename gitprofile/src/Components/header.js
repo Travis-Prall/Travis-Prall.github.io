@@ -26,7 +26,7 @@ class Header extends Component {
       <header id='home'>
         <Container fluid id='banner'>
           <Row className='justify-content-center'>
-            <Col xs={6} className='banner'>
+            <Col xs={6} className='banner m-5'>
                 <Row className='justify-content-center'>
                   <Col xs='auto'>
                     <h1>{personname}</h1>
