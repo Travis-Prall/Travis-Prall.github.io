@@ -11,7 +11,6 @@ class App extends Component {
     this.state = {
       name: 'Travis Prall',
       resumeData: {},
-      // resumeData: profileData,
     };
   }
 
@@ -19,7 +18,6 @@ class App extends Component {
     ReactGA.initialize('UA-209754722-1');
     ReactGA.pageview(window.location.pathname + window.location.search);
     this.setState({ resumeData: profileData });
-    // console.log(this.state.resumeData);
   }
 
   render() {
