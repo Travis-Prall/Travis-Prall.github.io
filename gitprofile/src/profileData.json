@@ -1,40 +1,38 @@
 {
   "name": "Travis Prall",
-  "main": {
-    "bio": "Travis Prall is a military veteran and experienced healthcare professional with a diverse background in conducting research, pharmacology, clinical pathology, biology, and performing clinical laboratory procedures. He holds a B.S. in Animal Physiology & Behavior, and a B.S. in Clinical Laboratory Science from DeVry University. In his 17+ year career history, Travis has served in such roles as Pharmacy Technician, Veterinary Technician, and Contract Specialist. As a Contract Specialist, while serving on active duty in the United States Air Force, he developed skills in research, analysis, attention to detail, quality control, compliance enforcement, and leading teams. Travis easily transitioned to a medical career after receiving an honorable discharge for his military service. His extensive background in the medical field has helped him to further develop his knowledge and passion for clinical laboratory science. He has firsthand experience with laboratory testing & analysis, research and evaluations, instrument maintenance, therapeutic drug monitoring, chemical safety & compounding, pharmaceutical supply & inventory management, and providing patient-centered care. He also is experienced with handling health insurance, performing quality control functions, performing chemical transformations & specimen management, and successfully leading teams.",
-    "social": [
-      {
-        "name": "Email",
-        "url": "mailto:mosbjf04o@mozmail.com",
-        "className": "fa fa-envelope",
-        "tip": "Email me"
-      },
-      {
-        "name": "facebook",
-        "url": "https://www.facebook.com/travis.prall",
-        "className": "fa fa-facebook",
-        "tip": "Facebook"
-      },
-      {
-        "name": "github",
-        "url": "https://github.com/Travis-Prall",
-        "className": "fa fa-github",
-        "tip": "GitHub"
-      },
-      {
-        "name": "linkedin",
-        "url": "https://www.linkedin.com/in/travisprall/",
-        "className": "fa fa-linkedin",
-        "tip": "LinkedIn"
-      },
-      {
-        "name": "Coffee",
-        "url": "https://www.buymeacoffee.com/travisprall",
-        "className": "fa fa-mug-hot",
-        "tip": "Buy me a Coffee"
-      }
-    ]
-  },
+  "bio": "Travis Prall is a military veteran and experienced healthcare professional with a diverse background in conducting research, pharmacology, clinical pathology, biology, and performing clinical laboratory procedures. He holds a B.S. in Animal Physiology & Behavior, and a B.S. in Clinical Laboratory Science from DeVry University. In his 17+ year career history, Travis has served in such roles as Pharmacy Technician, Veterinary Technician, and Contract Specialist. As a Contract Specialist, while serving on active duty in the United States Air Force, he developed skills in research, analysis, attention to detail, quality control, compliance enforcement, and leading teams. Travis easily transitioned to a medical career after receiving an honorable discharge for his military service. His extensive background in the medical field has helped him to further develop his knowledge and passion for clinical laboratory science. He has firsthand experience with laboratory testing & analysis, research and evaluations, instrument maintenance, therapeutic drug monitoring, chemical safety & compounding, pharmaceutical supply & inventory management, and providing patient-centered care. He also is experienced with handling health insurance, performing quality control functions, performing chemical transformations & specimen management, and successfully leading teams.",
+  "social": [
+    {
+      "name": "Email",
+      "url": "mailto:mosbjf04o@mozmail.com",
+      "className": "fa fa-envelope",
+      "tip": "Email me"
+    },
+    {
+      "name": "facebook",
+      "url": "https://www.facebook.com/travis.prall",
+      "className": "fa fa-facebook",
+      "tip": "Facebook"
+    },
+    {
+      "name": "github",
+      "url": "https://github.com/Travis-Prall",
+      "className": "fa fa-github",
+      "tip": "GitHub"
+    },
+    {
+      "name": "linkedin",
+      "url": "https://www.linkedin.com/in/travisprall/",
+      "className": "fa fa-linkedin",
+      "tip": "LinkedIn"
+    },
+    {
+      "name": "Coffee",
+      "url": "https://www.buymeacoffee.com/travisprall",
+      "className": "fa fa-mug-hot",
+      "tip": "Buy me a Coffee"
+    }
+  ],
   "resume": {
     "education": [
       {
@@ -202,8 +200,98 @@
     ]
   },
   "keywords": [
-    { "word": "Artist" },
-    { "word": "Engineer" },
-    { "word": "Scientist" }
+    {
+      "word": "Artist"
+    },
+    {
+      "word": "Engineer"
+    },
+    {
+      "word": "Scientist"
+    }
+  ],
+  "gallery": [
+    {
+      "section": "photography",
+      "pictures": [
+        {
+          "name": "Dan",
+          "alt": "Dan",
+          "description": "Photo taken and edited by me",
+          "src": "images/Dan.jpg"
+        },
+        {
+          "name": "Sin City",
+          "alt": "Sin City 1",
+          "description": "Photoshot with photography rendered through photoshop",
+          "src": "images/Sin City.jpg"
+        },
+        {
+          "name": "Sin City",
+          "alt": "Sin City 2",
+          "description": "Photoshot with photography rendered through photoshop",
+          "src": "images/Sin City 2.jpg"
+        },
+        {
+          "name": "Sin City",
+          "alt": "Sin City 3",
+          "description": "Photoshot with photography rendered through photoshop",
+          "src": "images/Sin City Matrix Battle.jpg"
+        },
+        {
+          "name": "Mirror",
+          "alt": "Mirror",
+          "description": "Photoshot with photography rendered through photoshop",
+          "src": "images/Mirror.jpg"
+        },
+        {
+          "name": "See no Evil Hear no Evil Speak no Evil",
+          "alt": "monkies",
+          "description": "Photo taken and edited by me",
+          "src": "images/See no Evil Hear no Evil Speak no Evil.jpg"
+        },
+        {
+          "name": "Jessica",
+          "alt": "Jessica Image",
+          "description": "Photo taken and edited by me",
+          "src": "images/Brittney.jpg"
+        }
+      ]
+    },
+    {
+      "section": "decor",
+      "pictures": [
+        {
+          "name": "Entryway",
+          "alt": "Entryway",
+          "description": "Wall Painting done by myself",
+          "src": "images/home1.jpg"
+        },
+        {
+          "name": "Living Room",
+          "alt": "Living Room",
+          "description": "Wall Painting done by myself",
+          "src": "images/home2.jpg"
+        },
+        {
+          "name": "Living Room",
+          "alt": "Living Room 2",
+          "description": "Wall Painting done by myself",
+          "src": "images/home3.jpg"
+        },
+        {
+          "name": "Stairwell",
+          "alt": "Stairwell",
+          "description": "Wall Painting done by myself",
+          "src": "images/home4.jpg"
+        },
+        {
+          "name": "Egyptian Wall Mural",
+          "alt": "Egyptian Wall Mural",
+          "description": "Photoshot with photography rendered through photoshop",
+          "src": "images/home5.jpg"
+        }
+      ]
+    }
   ]
 }
