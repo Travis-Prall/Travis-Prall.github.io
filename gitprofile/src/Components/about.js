@@ -25,25 +25,24 @@ class About extends Component {
     }
 
     return (
-      <section id='about' className='my-4'>
-        <Container fluid>
-          <Row className='justify-content-center'>
-            <Col lg={3} className='p-3'>
-              <Image
-                src='/images/profile_image.jpg'
-                className='profile-pic'
-                alt='Travis Prall Profile Pic'
-                fluid
-              />
-            </Col>
-            <Col lg={9} className='bio'>
-              <h2>About Me</h2>
-              <Row>
-                <Col>
-                  <p>{bio}</p>
-                </Col>
-              </Row>
-              {/* <Row className='justify-content-end'>
+      <Container fluid as='section' id='about' className='my-4'>
+        <Row className='justify-content-center'>
+          <Col lg={3} className='p-3'>
+            <Image
+              src='/images/profile_image.jpg'
+              className='profile-pic'
+              alt='Travis Prall Profile Pic'
+              fluid
+            />
+          </Col>
+          <Col lg={9} className='bio'>
+            <h2>About Me</h2>
+            <Row>
+              <Col>
+                <p>{bio}</p>
+              </Col>
+            </Row>
+            {/* <Row className='justify-content-end'>
                 <Col>
                   <a href='/forms/Travis_Prall_Resume_IT.pdf' download>
                     <Button variant='dark' size='sm'>
@@ -52,10 +51,9 @@ class About extends Component {
                   </a>
                 </Col>
               </Row> */}
-            </Col>
-          </Row>
-        </Container>
-      </section>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

@@ -68,7 +68,7 @@ class Resume extends Component {
                 </Accordion.Header>
                 <Accordion.Body>
                   <h4>
-                    From {work.startdate} to {work.enddate}
+                    From {work.startdate} To {work.enddate}
                   </h4>
                   <p>{work.description}</p>
                 </Accordion.Body>
@@ -100,41 +100,43 @@ class Resume extends Component {
     }
     if (this.props.resumeData) {
       return (
-        <section id='resume'>
-          <Container fluid>
-            <Row className='my-4 justify-content-center' id='education'>
-              <Col lg={3} className='p-3'>
-                <h1>
-                  <span>Education</span>
-                </h1>
-              </Col>
-              <Col lg={9}>{education}</Col>
-            </Row>
+        <Container fluid as='section' id='resume'>
+          <Row className='my-4 justify-content-center' id='education'>
+            <Col lg={3} className='p-3'>
+              <h1>
+                <span>Education</span>
+              </h1>
+            </Col>
+            <Col lg={9}>{education}</Col>
+          </Row>
 
-            <Row className='my-4 justify-content-center' id='work'>
-              <Col lg={3} className='p-3'>
-                <h1>
-                  <span>Work</span>
-                </h1>
-              </Col>
+          <Row className='my-4 justify-content-center' id='work'>
+            <Col lg={3} className='p-3'>
+              <h1>
+                <span>Work</span>
+              </h1>
+            </Col>
 
-              <Col lg={9}>{work}</Col>
-            </Row>
+            <Col lg={9}>{work}</Col>
+          </Row>
 
-            <Row className='my-4 justify-content-center' id='craft'>
-              <Col lg={3} className='p-3'>
-                <h1>
-                  <span>Skills</span>
-                </h1>
-              </Col>
+          <Row className='my-4 justify-content-center' id='craft'>
+            <Col lg={3} className='p-3'>
+              <h1>
+                <span>Skills</span>
+              </h1>
+            </Col>
 
-              <Col lg={9}>{craft}</Col>
-            </Row>
-          </Container>
-        </section>
+            <Col lg={9}>{craft}</Col>
+          </Row>
+        </Container>
       );
     } else {
-      return <section id='resume'>''</section>;
+      return (
+        <Container as='section' id='resume'>
+          ''
+        </Container>
+      );
     }
   }
 }
@@ -157,7 +159,6 @@ function ProgressBar(props) {
   useEffect(() => {
     setValue(props.skill.progress);
   });
-  console.log(value);
   return (
     <Row
       className='skills'
