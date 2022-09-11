@@ -27,6 +27,12 @@ function Gallery(props) {
         {chunk}
       </Container>
     );
+  } else {
+    return (
+      <Container fluid as='section' id='gallery' className='my-4'>
+        " "
+      </Container>
+    );
   }
 }
 
