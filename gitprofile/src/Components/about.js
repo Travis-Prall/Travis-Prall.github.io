@@ -9,8 +9,8 @@ import Placeholder from 'react-bootstrap/Placeholder';
 
 class About extends Component {
   render() {
-    if (this.props.resumeData) {
-      var bio = this.props.resumeData.main.bio;
+    if (this.props.resumeData.main) {
+      var bio = <p>{this.props.resumeData.main.bio}</p>;
     } else {
       var bio = (
         <Placeholder as='p' animation='glow'>
@@ -38,9 +38,7 @@ class About extends Component {
           <Col lg={9} className='bio'>
             <h2>About Me</h2>
             <Row>
-              <Col>
-                <p>{bio}</p>
-              </Col>
+              <Col>{bio}</Col>
             </Row>
             {/* <Row className='justify-content-end'>
                 <Col>

@@ -132,11 +132,7 @@ class Resume extends Component {
         </Container>
       );
     } else {
-      return (
-        <Container as='section' id='resume'>
-          ''
-        </Container>
-      );
+      return <></>;
     }
   }
 }

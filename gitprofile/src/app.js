@@ -10,10 +10,16 @@ class App extends Component {
     super(props);
     this.state = {
       name: 'Travis Prall',
-      resumeData: profileData,
+      resumeData: {},
+      // resumeData: profileData,
     };
+  }
+
+  componentDidMount() {
     ReactGA.initialize('UA-209754722-1');
     ReactGA.pageview(window.location.pathname + window.location.search);
+    this.setState({ resumeData: profileData });
+    // console.log(this.state.resumeData);
   }
 
   render() {
@@ -21,7 +27,7 @@ class App extends Component {
       <div className='App'>
         <Navbar />
         <Paths resumeData={this.state.resumeData} />
-        <Footer data={this.state.resumeData.main.social} />
+        <Footer data={this.state.resumeData} />
       </div>
     );
   }

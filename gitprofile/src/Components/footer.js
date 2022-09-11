@@ -10,7 +10,7 @@ function Footer(props) {
     <Container fluid as='footer'>
       <Row className='justify-content-md-center'>
         <Col lg='auto'>
-          <Col className='social-links'>{Networks(props.data)}</Col>
+          <Col className='social-links'>{Networks(props)}</Col>
         </Col>
       </Row>
       <Row className='justify-content-md-center'>

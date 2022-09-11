@@ -4,17 +4,15 @@ import About from '../Components/about';
 import Resume from '../Components/resume';
 
 class Home extends Component {
-    render() {
-      return (
+  render() {
+    return (
       <>
-        <Header
-          data={this.props.resumeData}
-        />
+        <Header data={this.props.resumeData} />
         <About resumeData={this.props.resumeData} />
         <Resume resumeData={this.props.resumeData.resume} />
       </>
-      );
-    }
+    );
   }
-  
-  export default Home;
+}
+
+export default Home;
