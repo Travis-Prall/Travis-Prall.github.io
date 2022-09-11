@@ -2,7 +2,6 @@ import { Nav, Navbar } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { useLocation, NavLink, Outlet } from 'react-router-dom';
-import ReactGA from 'react-ga';
 
 function MainNav() {
   return (
@@ -33,9 +32,6 @@ function MainTabs() {
         </Nav.Item>
         <Nav.Item as='li' className='me-auto'>
           <Nav.Link href='#resume'>Resume</Nav.Link>
-        </Nav.Item>
-        <Nav.Item as='li' className='me-auto'>
-          <Nav.Link href='#contact'>Contact</Nav.Link>
         </Nav.Item>
         <Nav.Item as='li' className='me-auto'>
           <Nav.Link as={NavLink} to='/art'>
