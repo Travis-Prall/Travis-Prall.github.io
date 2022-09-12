@@ -8,17 +8,20 @@ import { Networks } from './social';
 
 class Header extends Component {
   render() {
+    var personname = 'Travis Prall';
     if (this.props.data.name) {
-      var personname = this.props.data.name;
+      personname = this.props.data.name;
       var keywords = this.props.data.keywords.map(function (keyword) {
         return (
-          <Badge key={keyword.word} bg='dark' className='m-2'>
-            {keyword.word}
-          </Badge>
+          <Col
+            key={keyword.word}
+            className='d-flex py-1 justify-content-center'>
+            <Badge id='keyword' bg='dark'>
+              {keyword.word}
+            </Badge>
+          </Col>
         );
       });
-    } else {
-      var personname = 'Travis Prall';
     }
 
     return (
@@ -26,21 +29,11 @@ class Header extends Component {
         <Container fluid id='banner'>
           <Row className='justify-content-center'>
             <Col xs={6} className='banner m-5'>
-              <Row className='justify-content-center'>
-                <Col xs='auto'>
-                  <h1>{personname}</h1>
-                </Col>
+              <Row>
+                <h1>{personname}</h1>
               </Row>
-              <Row className='justify-content-center'>
-                <Col xs='auto' id='keyword'>
-                  {keywords}
-                </Col>
-              </Row>
-              <Row className='justify-content-center'>
-                <Col xs='auto'>
-                  <Col className='social'>{Networks(this.props)}</Col>
-                </Col>
-              </Row>
+              <Row>{keywords}</Row>
+              <Row>{Networks(this.props)}</Row>
             </Col>
           </Row>
         </Container>

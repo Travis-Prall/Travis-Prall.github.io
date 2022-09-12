@@ -1,100 +1,72 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Accordion } from 'react-bootstrap';
+import Stack from 'react-bootstrap/Stack';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import { Accordion, AccordionContext } from 'react-bootstrap';
 
 class Resume extends Component {
   render() {
     if (this.props.resumeData) {
       var education = this.props.resumeData.education.map(function (education) {
         return (
-          <Container fluid key={education.school} className='my-3'>
-            <Accordion flush>
-              <Accordion.Item eventKey={education.school}>
-                <Accordion.Header className='info'>
-                  <Row>
-                    <Col md='auto'>
-                      <i
-                        className='fas fa-graduation-cap'
-                        style={{ fontSize: '2em' }}></i>
-                    </Col>
-                    <Col md='auto'>
-                      <Row>
-                        <Col>
-                          <h2>{education.school}</h2>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <h4>
-                          <Col>
-                            <em>{education.degree} </em>
-                            <span>&bull;</span>
-                            {education.concentration}
-                            <span>&bull;</span>
-                            Graduated {education.graduated.slice(0, 4)}
-                          </Col>
-                        </h4>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Accordion.Header>
-                <Accordion.Body>{education.description}</Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          </Container>
+          <Accordion.Item
+            key={education.school}
+            eventKey={education.school}
+            className='my-3'>
+            <ContextAwareToggle eventKey={education.school}>
+              <Stack>
+                <h2>
+                  <i className='fas fa-graduation-cap'></i> {education.school}
+                </h2>
+                <h4>
+                  <em>{education.degree} </em>
+                  <span>&bull;</span>
+                  {education.concentration}
+                  <span>&bull;</span>
+                  Graduated {education.graduated.slice(0, 4)}
+                </h4>
+              </Stack>
+            </ContextAwareToggle>
+            <Accordion.Body>{education.description}</Accordion.Body>
+          </Accordion.Item>
         );
       });
       var work = this.props.resumeData.work.map(function (work) {
         return (
-          <Container fluid key={work.company} className='my-3'>
-            <Accordion flush>
-              <Accordion.Item eventKey={work.company}>
-                <Accordion.Header className='info'>
-                  <Row>
-                    <Col>
-                      <Row>
-                        <Col>
-                          <h2>{work.company}</h2>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <h3>{work.title}</h3>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Accordion.Header>
-                <Accordion.Body>
-                  <h4>
-                    From {work.startdate} To {work.enddate}
-                  </h4>
-                  <p>{work.description}</p>
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          </Container>
+          <Accordion.Item
+            key={work.company}
+            eventKey={work.company}
+            className='my-3'>
+            <ContextAwareToggle eventKey={work.company}>
+              <Stack>
+                <h2>{work.company}</h2>
+                <h3>{work.title}</h3>
+              </Stack>
+            </ContextAwareToggle>
+            <Accordion.Body>
+              <h4>
+                From {work.startdate} To {work.enddate}
+              </h4>
+              <p>{work.description}</p>
+            </Accordion.Body>
+          </Accordion.Item>
         );
       });
       var craft = this.props.resumeData.craft.map(function (craft) {
         return (
-          <Container fluid key={craft.name} className='my-3'>
-            <Accordion flush>
-              <Accordion.Item eventKey={craft.name}>
-                <Accordion.Header className='info'>
-                  <Row>
-                    <Col>
-                      <h2>{craft.name}</h2>
-                    </Col>
-                  </Row>
-                </Accordion.Header>
-                <Accordion.Body>
-                  <SkillBars skillset={craft.skills} />
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          </Container>
+          <Accordion.Item
+            key={craft.name}
+            eventKey={craft.name}
+            className='my-3'>
+            <ContextAwareToggle eventKey={craft.name}>
+              <h2>{craft.name}</h2>
+            </ContextAwareToggle>
+            <Accordion.Body>
+              <SkillBars skillset={craft.skills} />
+            </Accordion.Body>
+          </Accordion.Item>
         );
       });
     }
@@ -107,7 +79,9 @@ class Resume extends Component {
                 <span>Education</span>
               </h1>
             </Col>
-            <Col lg={9}>{education}</Col>
+            <Col lg={9}>
+              <Accordion flush>{education}</Accordion>
+            </Col>
           </Row>
 
           <Row className='my-4 justify-content-center' id='work'>
@@ -117,7 +91,9 @@ class Resume extends Component {
               </h1>
             </Col>
 
-            <Col lg={9}>{work}</Col>
+            <Col lg={9}>
+              <Accordion flush>{work}</Accordion>
+            </Col>
           </Row>
 
           <Row className='my-4 justify-content-center' id='craft'>
@@ -127,7 +103,9 @@ class Resume extends Component {
               </h1>
             </Col>
 
-            <Col lg={9}>{craft}</Col>
+            <Col lg={9}>
+              <Accordion flush>{craft}</Accordion>
+            </Col>
           </Row>
         </Container>
       );
@@ -137,8 +115,8 @@ class Resume extends Component {
   }
 }
 
-function SkillBars(props) {
-  const SkillArray = props.skillset.map((skill) => (
+function SkillBars({ skillset }) {
+  const SkillArray = skillset.map((skill) => (
     <ul key={skill.name}>
       <h3>{skill.name}</h3>
       <Container fluid className='barskill'>
@@ -149,21 +127,40 @@ function SkillBars(props) {
   return <Container>{SkillArray}</Container>;
 }
 
-function ProgressBar(props) {
+function ProgressBar({ skill }) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    setValue(props.skill.progress);
-  });
+    setValue(skill.progress);
+  }, [skill]);
+
   return (
     <Row
       className='skills'
       style={{
         width: value + '%',
-        backgroundColor: props.skill.color,
+        backgroundColor: skill.color,
+        transition: 'all 5s ease-in-out',
       }}>
-      <span className='slabel'>{props.skill.progress}%</span>
+      <span className='slabel'>{skill.progress}%</span>
     </Row>
+  );
+}
+
+function ContextAwareToggle({ children, eventKey, callback }) {
+  const { activeEventKey } = useContext(AccordionContext);
+
+  const decoratedOnClick = useAccordionButton(
+    eventKey,
+    () => callback && callback(eventKey)
+  );
+
+  const isCurrentEventKey = activeEventKey === eventKey;
+
+  return (
+    <Accordion.Header onClick={decoratedOnClick} className='info'>
+      {children}
+    </Accordion.Header>
   );
 }
 

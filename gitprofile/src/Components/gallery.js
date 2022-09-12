@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
 function Gallery(props) {
-  console.log(props);
   if (props.resumeData.gallery) {
     var chunk = props.resumeData.gallery.map(function (gallery) {
       return (
@@ -37,7 +36,6 @@ function Gallery(props) {
 }
 
 function Book(props) {
-  console.log(props);
   const display = 'd-none d-md-block';
   const height = 600;
   const Ialignment = 'd-inline float-right';
