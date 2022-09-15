@@ -9,13 +9,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Travis Prall',
+      name: process.env.REACT_APP_PERSON_NAME,
       resumeData: {},
     };
   }
 
   componentDidMount() {
-    ReactGA.initialize('UA-209754722-1');
+    ReactGA.initialize(process.env.REACT_APP_GOOGLE);
     ReactGA.pageview(window.location.pathname + window.location.search);
     this.setState({ resumeData: profileData });
   }
