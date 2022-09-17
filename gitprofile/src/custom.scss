@@ -67,9 +67,14 @@ $bodytext: Garamond, serif;
 
 $assetImage: '../images';
 
+body {
+  background: #0f0f0f;
+  font-size: 100%;
+}
+
 /**======================
- *    According
- *========================**/
+*    According
+*========================**/
 
 .accordion-button.collapsed {
   background: $composition8;
@@ -121,15 +126,16 @@ $assetImage: '../images';
 }
 
 /**========================================================================
- *                           Layout
- *========================================================================**/
+    *                           Layout
+    *========================================================================**/
 
 /**============================================
- *               Header
- *=============================================**/
+    *               Header
+    *=============================================**/
 header {
   z-index: 0;
   // width: 100%;
+  background: #161415 url(../public/images/background.png) no-repeat top center;
   background-size: cover !important;
 
   #banner {
@@ -194,8 +200,11 @@ header {
 }
 
 /**============================================
- *               Combined Sections
- *=============================================**/
+    *               Combined Sections
+    *=============================================**/
+#stack {
+  background: #161415 url(../public/images/prism.png) repeat;
+}
 
 #about,
 #resume,
@@ -204,6 +213,8 @@ header {
   border: 0.2em solid $composition8;
   box-shadow: 0.5em 0.5em 1em $composition0;
   border-style: $border-style;
+  background: #161415 url(../public/images/dark-honeycomb.png) repeat;
+  background-attachment: fixed;
 
   h1 {
     font: bold 2em/2em $heading1;
