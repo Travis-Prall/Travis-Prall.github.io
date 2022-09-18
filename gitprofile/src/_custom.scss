@@ -1,0 +1,44 @@
+@import './base.scss';
+
+/**========================================================================
+ *                           Colors
+ *========================================================================**/
+
+// $composition0: black;
+// $composition1: lighten($composition0, 10);
+// $composition2: lighten($composition1, 10);
+// $composition3: lighten($composition2, 10);
+// $composition4: lighten($composition3, 10);
+// $composition5: lighten($composition4, 10);
+// $composition6: lighten($composition5, 10);
+// $composition7: lighten($composition6, 10);
+// $composition8: lighten($composition7, 10);
+// $composition9: lighten($composition8, 10);
+
+$textPrimary: #fff;
+$textSecondary: rgba(255, 255, 255, 0.7);
+$textdisabled: rgba(255, 255, 255, 0.5);
+
+$hightlight-color: rgb(210, 0, 0);
+
+/**========================================================================
+ *                           Override Defaults
+ *========================================================================**/
+// Override default variables before the import
+$body-bg: $composition1;
+$accordion-icon-active-color: $hightlight-color;
+$accordion-bg: $composition9;
+$primary: red;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-shadows: true;
+$enable-gradients: true;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+// $heading1: Helvetica, Arial, sans-serif;
+// $heading2: Garamond, serif;
+// $bodytext: Garamond, serif;

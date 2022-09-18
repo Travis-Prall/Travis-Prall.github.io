@@ -1,62 +1,5 @@
-/**========================================================================
- *                           Colors
- *========================================================================**/
-
-$textPrimary: #fff;
-$textSecondary: rgba(255, 255, 255, 0.7);
-$textdisabled: rgba(255, 255, 255, 0.5);
-
-$composition0: black;
-$composition1: lighten($composition0, 10);
-$composition2: lighten($composition1, 10);
-$composition3: lighten($composition2, 10);
-$composition4: lighten($composition3, 10);
-$composition5: lighten($composition4, 10);
-$composition6: lighten($composition5, 10);
-$composition7: lighten($composition6, 10);
-$composition8: lighten($composition7, 10);
-$composition9: lighten($composition8, 10);
-
-$hightlight-color: rgb(210, 0, 0);
-
-/**========================================================================
- *                           Override Defaults
- *========================================================================**/
-// Override default variables before the import
-$body-bg: $composition1;
-$accordion-icon-active-color: $hightlight-color;
-$accordion-bg: $composition9;
-$primary: red;
-
-// Options
-//
-// Quickly modify global styling by enabling or disabling optional features.
-$enable-shadows: true;
-$enable-gradients: true;
-
-// Import Bootstrap and its default variables
-@import '~bootstrap/scss/bootstrap.scss';
-
-/**========================================================================
- *                           Standards
- *========================================================================**/
-$border-style: outset;
-$shadow: 0.5em 0.5em 1em $composition0;
-$text_shadow: 0.3rem 0.3rem 0.1rem rgba(0, 0, 0, 0.9);
-
-$heading1: Helvetica, Arial, sans-serif;
-$heading2: Garamond, serif;
-$bodytext: Garamond, serif;
-
-/**========================================================================
- *                           Mixin
- *========================================================================**/
-
-@mixin standardbox {
-  border: 1px solid $composition8;
-  box-shadow: 8px 8px 8px $composition0;
-  border-style: $border-style;
-}
+@import '../base.scss';
+@import '../custom.scss';
 
 /**========================================================================
  *                           Layout
@@ -135,7 +78,8 @@ body {
 header {
   z-index: 0;
   // width: 100%;
-  background: #161415 url(../public/images/background.png) no-repeat top center;
+  background: #161415 url(../../public/images/background.png) no-repeat top
+    center;
   background-size: cover !important;
 
   #banner {
@@ -203,7 +147,7 @@ header {
     *               Combined Sections
     *=============================================**/
 #stack {
-  background: #161415 url(../public/images/prism.png) repeat;
+  background: #161415 url(../../public/images/prism.png) repeat;
 }
 
 #about,
@@ -213,7 +157,7 @@ header {
   border: 0.2em solid $composition8;
   box-shadow: 0.5em 0.5em 1em $composition0;
   border-style: $border-style;
-  background: #161415 url(../public/images/dark-honeycomb.png) repeat;
+  background: #161415 url(../../public/images/dark-honeycomb.png) repeat;
   background-attachment: fixed;
 
   h1 {
@@ -315,36 +259,6 @@ header {
     color: $composition9;
     font: $bodytext;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
-  }
-}
-
-/**============================================
- *               Gallery
- *=============================================**/
-
-#decor,
-#gallery {
-  h3 {
-    font: 2em/1.5em $heading2;
-    text-align: end;
-  }
-
-  p {
-    font: 1em/1.1em $heading1;
-    text-align: end;
-  }
-
-  #artwork {
-    background-color: $composition4;
-    background-image: radial-gradient($composition5, $composition4);
-    border: 1px solid $composition8;
-    @include standardbox;
-  }
-
-  @media (max-width: 688px) {
-    .carousel-item > img {
-      max-height: 146px;
-    }
   }
 }
 

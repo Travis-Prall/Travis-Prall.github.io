@@ -1,0 +1,32 @@
+/**========================================================================
+ *                           Standards
+ *========================================================================**/
+
+$composition0: black;
+$composition1: lighten($composition0, 10);
+$composition2: lighten($composition1, 10);
+$composition3: lighten($composition2, 10);
+$composition4: lighten($composition3, 10);
+$composition5: lighten($composition4, 10);
+$composition6: lighten($composition5, 10);
+$composition7: lighten($composition6, 10);
+$composition8: lighten($composition7, 10);
+$composition9: lighten($composition8, 10);
+
+$heading1: Helvetica, Arial, sans-serif;
+$heading2: Garamond, serif;
+$bodytext: Garamond, serif;
+
+$border-style: outset;
+$shadow: 0.5em 0.5em 1em $composition0;
+$text_shadow: 0.3rem 0.3rem 0.1rem rgba(0, 0, 0, 0.9);
+
+/**========================================================================
+ *                           Mixin
+ *========================================================================**/
+
+@mixin standardbox {
+  border: 1px solid $composition8;
+  box-shadow: 8px 8px 8px $composition0;
+  border-style: $border-style;
+}

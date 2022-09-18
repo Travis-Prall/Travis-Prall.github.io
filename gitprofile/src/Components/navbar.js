@@ -11,6 +11,7 @@ function MainNav() {
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
             <MainTabs />
+
             <Outlet />
           </Navbar.Collapse>
         </Navbar>
