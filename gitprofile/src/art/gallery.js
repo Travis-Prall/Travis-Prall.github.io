@@ -28,9 +28,7 @@ function Gallery(props) {
     );
   } else {
     return (
-      <Container fluid as="section" id="gallery" className="my-4">
-        " "
-      </Container>
+      <Container fluid as="section" id="gallery" className="my-4"></Container>
     );
   }
 }
