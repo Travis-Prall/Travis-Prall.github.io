@@ -1,18 +1,11 @@
-import React, { Component } from 'react';
-import Header from '../Components/header';
-import About from '../Components/about';
-import Resume from '../Components/resume';
+import { Header } from "../components";
+import { About } from "../components";
+import { Resume } from "../components";
 
-class Home extends Component {
-  render() {
-    return (
-      <>
-        <Header data={this.props.resumeData} />
-        <About resumeData={this.props.resumeData} />
-        <Resume resumeData={this.props.resumeData.resume} />
-      </>
-    );
-  }
-}
-
-export default Home;
+export const Home = (resumeData) => (
+  <>
+    <Header resumeData={resumeData} />
+    <About {...resumeData} />
+    <Resume resumeData={resumeData} />
+  </>
+);

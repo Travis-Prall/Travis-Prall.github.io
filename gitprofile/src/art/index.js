@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Gallery from './gallery';
-import Container from 'react-bootstrap/Container';
-import './art.scss';
+import React, { Component } from "react";
+import Gallery from "./gallery";
+import Container from "react-bootstrap/Container";
+import "./art.scss";
 
 class Art extends Component {
   render() {

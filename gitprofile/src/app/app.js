@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import Navbar from '../Components/navbar';
-import Footer from '../Components/footer';
-import Paths from '../pages/paths';
-import profileData from '../profileData.json';
-import ReactGA from 'react-ga';
-import './app.scss';
+import React, { Component } from "react";
+import { MainNav as Navbar } from "../components";
+import { Footer } from "../components";
+import { Paths } from "../pages";
+import profileData from "../profileData.json";
+import ReactGA from "react-ga";
+import "./app.scss";
 
 export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: process.env.REACT_APP_PERSON_NAME,
-      resumeData: {},
+      resumeData: [],
     };
   }
 
@@ -23,10 +23,10 @@ export class App extends Component {
 
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Navbar />
-        <Paths resumeData={this.state.resumeData} />
-        <Footer data={this.state.resumeData} />
+        <Paths {...this.state.resumeData} />
+        <Footer {...this.state.resumeData} />
       </div>
     );
   }

@@ -1,24 +1,27 @@
-import React, { Component, useState, useEffect, useContext } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Stack from 'react-bootstrap/Stack';
-import { useAccordionButton } from 'react-bootstrap/AccordionButton';
-import { Accordion, AccordionContext } from 'react-bootstrap';
+import React, { Component, useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Stack from "react-bootstrap/Stack";
+import { useAccordionButton } from "react-bootstrap/AccordionButton";
+import { Accordion } from "react-bootstrap";
 
-class Resume extends Component {
+export class Resume extends Component {
   render() {
-    if (this.props.resumeData) {
-      var education = this.props.resumeData.education.map(function (education) {
+    console.log("First Render", this.props.resumeData);
+    if (this.props.resumeData.resume) {
+      var education = this.props.resumeData.resume.education.map(function (
+        education
+      ) {
         return (
           <Accordion.Item
             key={education.school}
             eventKey={education.school}
-            className='my-3'>
+            className="my-3">
             <ContextAwareToggle eventKey={education.school}>
               <Stack>
                 <h2>
-                  <i className='fas fa-graduation-cap'></i> {education.school}
+                  <i className="fas fa-graduation-cap"></i> {education.school}
                 </h2>
                 <h4>
                   <em>{education.degree} </em>
@@ -33,12 +36,12 @@ class Resume extends Component {
           </Accordion.Item>
         );
       });
-      var work = this.props.resumeData.work.map(function (work) {
+      var work = this.props.resumeData.resume.work.map(function (work) {
         return (
           <Accordion.Item
             key={work.company}
             eventKey={work.company}
-            className='my-3'>
+            className="my-3">
             <ContextAwareToggle eventKey={work.company}>
               <Stack>
                 <h2>{work.company}</h2>
@@ -54,12 +57,12 @@ class Resume extends Component {
           </Accordion.Item>
         );
       });
-      var craft = this.props.resumeData.craft.map(function (craft) {
+      var craft = this.props.resumeData.resume.craft.map(function (craft) {
         return (
           <Accordion.Item
             key={craft.name}
             eventKey={craft.name}
-            className='my-3'>
+            className="my-3">
             <ContextAwareToggle eventKey={craft.name}>
               <h2>{craft.name}</h2>
             </ContextAwareToggle>
@@ -70,11 +73,11 @@ class Resume extends Component {
         );
       });
     }
-    if (this.props.resumeData) {
+    if (this.props.resumeData.resume) {
       return (
-        <Container fluid as='section' id='resume'>
-          <Row className='my-4 justify-content-center' id='education'>
-            <Col lg={3} className='p-3'>
+        <Container fluid as="section" id="resume">
+          <Row className="my-4 justify-content-center" id="education">
+            <Col lg={3} className="p-3">
               <h1>
                 <span>Education</span>
               </h1>
@@ -84,8 +87,8 @@ class Resume extends Component {
             </Col>
           </Row>
 
-          <Row className='my-4 justify-content-center' id='work'>
-            <Col lg={3} className='p-3'>
+          <Row className="my-4 justify-content-center" id="work">
+            <Col lg={3} className="p-3">
               <h1>
                 <span>Work</span>
               </h1>
@@ -96,8 +99,8 @@ class Resume extends Component {
             </Col>
           </Row>
 
-          <Row className='my-4 justify-content-center' id='craft'>
-            <Col lg={3} className='p-3'>
+          <Row className="my-4 justify-content-center" id="craft">
+            <Col lg={3} className="p-3">
               <h1>
                 <span>Skills</span>
               </h1>
@@ -119,7 +122,7 @@ function SkillBars({ skillset }) {
   const SkillArray = skillset.map((skill) => (
     <ul key={skill.name}>
       <h3>{skill.name}</h3>
-      <Container fluid className='barskill'>
+      <Container fluid className="barskill">
         <ProgressBar skill={skill}></ProgressBar>
       </Container>
     </ul>
@@ -136,32 +139,30 @@ function ProgressBar({ skill }) {
 
   return (
     <Row
-      className='skills'
+      className="skills"
       style={{
-        width: value + '%',
+        width: value + "%",
         backgroundColor: skill.color,
-        transition: 'all 5s ease-in-out',
+        transition: "all 5s ease-in-out",
       }}>
-      <span className='slabel'>{skill.progress}%</span>
+      <span className="slabel">{skill.progress}%</span>
     </Row>
   );
 }
 
 function ContextAwareToggle({ children, eventKey, callback }) {
-  const { activeEventKey } = useContext(AccordionContext);
+  // const { activeEventKey } = useContext(AccordionContext);
 
   const decoratedOnClick = useAccordionButton(
     eventKey,
     () => callback && callback(eventKey)
   );
 
-  const isCurrentEventKey = activeEventKey === eventKey;
+  // const isCurrentEventKey = activeEventKey === eventKey;
 
   return (
-    <Accordion.Header onClick={decoratedOnClick} className='info'>
+    <Accordion.Header onClick={decoratedOnClick} className="info">
       {children}
     </Accordion.Header>
   );
 }
-
-export default Resume;
