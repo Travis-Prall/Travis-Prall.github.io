@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from "../firestore";
 
-export const NetworkArray = () => {
+const NetworkArray = () => {
   const [sociallinks, setSocial] = useState([]);
   const socialCollectionRef = collection(db, "social");
 
