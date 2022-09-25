@@ -33,7 +33,9 @@ export class Header extends Component {
                 <h1>{personname}</h1>
               </Row>
               <Row>{keywords}</Row>
-              <Row>{Networks(this.props.resumeData)}</Row>
+              <Row>
+                <Networks />
+              </Row>
             </Col>
           </Row>
         </Container>

@@ -26,7 +26,7 @@ export class App extends Component {
       <div className="App">
         <Navbar />
         <Paths {...this.state.resumeData} />
-        <Footer {...this.state.resumeData} />
+        <Footer />
       </div>
     );
   }

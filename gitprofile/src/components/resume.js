@@ -8,7 +8,6 @@ import { Accordion } from "react-bootstrap";
 
 export class Resume extends Component {
   render() {
-    console.log("First Render", this.props.resumeData);
     if (this.props.resumeData.resume) {
       var education = this.props.resumeData.resume.education.map(function (
         education
