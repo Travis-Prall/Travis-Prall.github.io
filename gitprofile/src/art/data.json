@@ -1,0 +1,86 @@
+{
+    "gallery": [
+        {
+            "section": "photography",
+            "pictures": [
+                {
+                    "name": "Dan",
+                    "alt": "Dan",
+                    "description": "Photo taken and edited by me",
+                    "src": "images/Dan.jpg"
+                },
+                {
+                    "name": "Sin City",
+                    "alt": "Sin City 1",
+                    "description": "Photoshot with photography rendered through photoshop",
+                    "src": "images/Sin City.jpg"
+                },
+                {
+                    "name": "Sin City",
+                    "alt": "Sin City 2",
+                    "description": "Photoshot with photography rendered through photoshop",
+                    "src": "images/Sin City 2.jpg"
+                },
+                {
+                    "name": "Sin City",
+                    "alt": "Sin City 3",
+                    "description": "Photoshot with photography rendered through photoshop",
+                    "src": "images/Sin City Matrix Battle.jpg"
+                },
+                {
+                    "name": "Mirror",
+                    "alt": "Mirror",
+                    "description": "Photoshot with photography rendered through photoshop",
+                    "src": "images/Mirror.jpg"
+                },
+                {
+                    "name": "See no Evil Hear no Evil Speak no Evil",
+                    "alt": "monkies",
+                    "description": "Photo taken and edited by me",
+                    "src": "images/See no Evil Hear no Evil Speak no Evil.jpg"
+                },
+                {
+                    "name": "Jessica",
+                    "alt": "Jessica Image",
+                    "description": "Photo taken and edited by me",
+                    "src": "images/Brittney.jpg"
+                }
+            ]
+        },
+        {
+            "section": "decor",
+            "pictures": [
+                {
+                    "name": "Entryway",
+                    "alt": "Entryway",
+                    "description": "Wall Painting done by myself",
+                    "src": "images/home1.jpg"
+                },
+                {
+                    "name": "Living Room",
+                    "alt": "Living Room",
+                    "description": "Wall Painting done by myself",
+                    "src": "images/home2.jpg"
+                },
+                {
+                    "name": "Living Room Side",
+                    "alt": "Living Room 2",
+                    "description": "Wall Painting done by myself",
+                    "src": "images/home3.jpg"
+                },
+                {
+                    "name": "Stairwell",
+                    "alt": "Stairwell",
+                    "description": "Wall Painting done by myself",
+                    "src": "images/home4.jpg"
+                },
+                {
+                    "name": "Egyptian Wall Mural",
+                    "alt": "Egyptian Wall Mural",
+                    "description": "Photoshot with photography rendered through photoshop",
+                    "src": "images/home5.jpg"
+                }
+            ]
+        }
+    ]
+}

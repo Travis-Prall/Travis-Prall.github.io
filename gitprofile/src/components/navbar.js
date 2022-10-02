@@ -6,7 +6,12 @@ import { useLocation, NavLink, Outlet } from "react-router-dom";
 export const MainNav = () => (
   <Container fluid className="pb-5">
     <Row>
-      <Navbar expand="sm" bg="dark" variant="dark" fixed="top">
+      <Navbar
+        expand="sm"
+        bg="dark"
+        variant="dark"
+        fixed="top"
+        collapseOnSelect="true">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <MainTabs />

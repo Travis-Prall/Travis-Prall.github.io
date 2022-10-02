@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { getDoc, doc } from "firebase/firestore";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
-// import Button from "react-bootstrap/Button";
 import Placeholder from "react-bootstrap/Placeholder";
+import { db } from "../firestore";
 
-export const About = (resumeData) => {
+export const About = () => {
   const [bio, setBio] = useState(bioPlaceHolder);
+  const bioRef = doc(db, "profile", "bio");
 
   useEffect(() => {
-    if (resumeData.bio) {
-      setBio(<p>{resumeData.bio}</p>);
-    }
-  }, [resumeData]);
+    const getBio = async () => {
+      const docBio = await getDoc(bioRef);
+      setBio(docBio.data());
+    };
+    getBio();
+  }, []);
 
   return (
     <Container fluid as="section" id="about" className="my-4">
@@ -29,17 +33,10 @@ export const About = (resumeData) => {
         <Col lg={9} className="bio">
           <h2>About Me</h2>
           <Row>
-            <Col>{bio}</Col>
+            <Col>
+              <p>{bio.bio}</p>
+            </Col>
           </Row>
-          {/* <Row className="justify-content-end">
-                <Col>
-                  <a href="/forms/Travis_Prall_Resume_IT.pdf" download>
-                    <Button variant="dark" size="sm">
-                      DownLoad Resume
-                    </Button>
-                  </a>
-                </Col>
-              </Row> */}
         </Col>
       </Row>
     </Container>
@@ -56,12 +53,3 @@ const bioPlaceHolder = () => (
     <Placeholder xs={6} /> <Placeholder xs={2} />
   </Placeholder>
 );
-
-// const bioProfile = (resumeData) => {
-//   console.log(resumeData);
-//   if (resumeData.bio) {
-//     <p>{resumeData.bio}</p>;
-//   } else {
-//     bioPlaceHolder;
-//   }
-// };

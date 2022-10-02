@@ -3,35 +3,30 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
+import Data from "./data.json";
 
-function Gallery(props) {
-  if (props.resumeData.gallery) {
-    var chunk = props.resumeData.gallery.map(function (gallery) {
-      return (
-        <Container fluid key={gallery.section} id="art" className="my-4">
-          <Row className="justify-content-md-center" id="artwork">
-            <Col lg={2}>
-              <h1>
-                <span>{gallery.section}</span>
-              </h1>
-            </Col>
-
-            <Col lg={10}>{Book(gallery.pictures)}</Col>
-          </Row>
-        </Container>
-      );
-    });
+const Gallery = () => {
+  var chunk = Data.gallery.map(function (gallery) {
     return (
-      <Container fluid as="section" id="gallery" className="my-4">
-        {chunk}
+      <Container fluid key={gallery.section} id="art" className="my-4">
+        <Row className="justify-content-md-center" id="artwork">
+          <Col lg={2}>
+            <h1>
+              <span>{gallery.section}</span>
+            </h1>
+          </Col>
+
+          <Col lg={10}>{Book(gallery.pictures)}</Col>
+        </Row>
       </Container>
     );
-  } else {
-    return (
-      <Container fluid as="section" id="gallery" className="my-4"></Container>
-    );
-  }
-}
+  });
+  return (
+    <Container fluid as="section" id="gallery" className="my-4">
+      {chunk}
+    </Container>
+  );
+};
 
 function Book(props) {
   const display = "d-none d-md-block";

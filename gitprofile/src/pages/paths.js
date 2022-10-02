@@ -4,11 +4,11 @@ import { Home } from "./home";
 import Art from "../art";
 import { NoPage } from "./nopage";
 
-export const Paths = (resumeData) => (
+export const Paths = () => (
   <Routes>
     <Route exact path="" element={<Home />} />
-    <Route index element={<Home {...resumeData} />} />
-    <Route path="art" element={<Art resumeData={resumeData} />} />
+    <Route index element={<Home />} />
+    <Route path="art" element={<Art />} />
     <Route path="*" element={<NoPage />} />
   </Routes>
 );

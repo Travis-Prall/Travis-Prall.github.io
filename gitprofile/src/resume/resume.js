@@ -5,13 +5,12 @@ import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import { Accordion } from "react-bootstrap";
+import Data from "./data.json";
 
 export class Resume extends Component {
   render() {
-    if (this.props.resumeData.resume) {
-      var education = this.props.resumeData.resume.education.map(function (
-        education
-      ) {
+    if (Data) {
+      var education = Data.education.map(function (education) {
         return (
           <Accordion.Item
             key={education.school}
@@ -35,7 +34,7 @@ export class Resume extends Component {
           </Accordion.Item>
         );
       });
-      var work = this.props.resumeData.resume.work.map(function (work) {
+      var work = Data.work.map(function (work) {
         return (
           <Accordion.Item
             key={work.company}
@@ -56,7 +55,7 @@ export class Resume extends Component {
           </Accordion.Item>
         );
       });
-      var craft = this.props.resumeData.resume.craft.map(function (craft) {
+      var craft = Data.craft.map(function (craft) {
         return (
           <Accordion.Item
             key={craft.name}
@@ -72,7 +71,7 @@ export class Resume extends Component {
         );
       });
     }
-    if (this.props.resumeData.resume) {
+    if (Data) {
       return (
         <Container fluid as="section" id="resume">
           <Row className="my-4 justify-content-center" id="education">

@@ -1,14 +1,14 @@
-@import '../base.scss';
-@import '../custom.scss';
+@import "../base.scss";
+@import "../custom.scss";
 
 /**========================================================================
  *                           Layout
  *========================================================================**/
 .container {
-  max-width: '100%'; //This will make container to take screen width
+  max-width: "100%"; //This will make container to take screen width
 }
 
-$assetImage: '../images';
+$assetImage: "../images";
 
 body {
   background: #0f0f0f;
@@ -267,10 +267,13 @@ header {
  *=============================================**/
 
 footer {
+  z-index: 5;
   background: $composition1;
   background-image: linear-gradient($composition1, $composition0);
   color: $composition6;
   text-align: center;
+  position: fixed;
+  bottom: 0;
 
   a,
   a:visited {
@@ -283,7 +286,7 @@ footer {
     color: $composition5;
 
     &:before {
-      content: '\2022';
+      content: "\2022";
     }
 
     &:first-child:before {

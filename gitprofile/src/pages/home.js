@@ -1,11 +1,11 @@
 import { Header } from "../components";
 import { About } from "../components";
-import { Resume } from "../components";
+import { Resume } from "../resume";
 
-export const Home = (resumeData) => (
+export const Home = () => (
   <>
-    <Header resumeData={resumeData} />
-    <About {...resumeData} />
-    <Resume resumeData={resumeData} />
+    <Header />
+    <About />
+    <Resume />
   </>
 );

@@ -36,7 +36,7 @@ export const Header = () => (
       <Row className="justify-content-center">
         <Col xs={6} className="banner m-5">
           <Row>
-            <h1>Travis Prall</h1>
+            <h1>{process.env.REACT_APP_PERSON_NAME}</h1>
           </Row>
           <Row>
             <KeywordDb />
