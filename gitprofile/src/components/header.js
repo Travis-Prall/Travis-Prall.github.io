@@ -1,14 +1,15 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
 import { Networks } from "./social";
 import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from "../firestore";
 
-export const KeywordDb = () => {
+export const KeywordDb = ({ setPageMode }) => {
   const [keywords, setKeywords] = useState([]);
+  const [activeKey, setActiveKey] = useState("Artist");
   const keywordsCollectionRef = collection(db, "keywords");
 
   useEffect(() => {
@@ -19,18 +20,31 @@ export const KeywordDb = () => {
     getKeywords();
   }, []);
 
+  useEffect(() => {
+    setPageMode(activeKey);
+  }, [activeKey]);
+
+  const handleClick = (word) => {
+    if (word != activeKey) {
+      setActiveKey(word);
+    }
+  };
+
   return keywords.map((keyword) => {
     return (
       <Col key={keyword.word} className="d-flex py-1 justify-content-center">
-        <Badge id="keyword" bg="dark">
+        <Button
+          id="keyword"
+          variant={activeKey === keyword.word ? "primary" : "dark"}
+          onClick={() => handleClick(keyword.word)}>
           {keyword.word}
-        </Badge>
+        </Button>
       </Col>
     );
   });
 };
 
-export const Header = () => (
+export const Header = ({ pageMode, setPageMode }) => (
   <Container fluid as="header" id="home">
     <Container fluid id="banner">
       <Row className="justify-content-center">
@@ -39,7 +53,7 @@ export const Header = () => (
             <h1>{process.env.REACT_APP_PERSON_NAME}</h1>
           </Row>
           <Row>
-            <KeywordDb />
+            <KeywordDb pageMode={pageMode} setPageMode={setPageMode} />
           </Row>
           <Row>
             <Networks />

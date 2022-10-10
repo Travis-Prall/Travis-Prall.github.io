@@ -7,7 +7,7 @@ import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import { Accordion } from "react-bootstrap";
 import Data from "./data.json";
 
-export const Resume = () => {
+export const Resume = ({ pageMode }) => {
   if (Data) {
     var education = Data.education.map(function (education) {
       return (
@@ -67,16 +67,22 @@ export const Resume = () => {
       );
     });
   }
-  if (Data) {
-    return (
-      <Container fluid as="section" id="resume">
-        <Section title="Education">{education}</Section>
-        <Section title="Work">{work}</Section>
-        <Section title="Skills">{craft}</Section>
-      </Container>
-    );
-  } else {
-    return null;
+  switch (pageMode) {
+    case "Engineer":
+      return (
+        <Container fluid as="section" id="resume">
+          <Section title="Skills">{craft}</Section>
+        </Container>
+      );
+    case "Scientist":
+      return (
+        <Container fluid as="section" id="resume">
+          <Section title="Education">{education}</Section>
+          <Section title="Work">{work}</Section>
+        </Container>
+      );
+    default:
+      return null;
   }
 };
 
@@ -105,7 +111,7 @@ const SkillBars = ({ skillset }) => {
       </Container>
     </ul>
   ));
-  return <Container>{SkillArray}</Container>;
+  return <>{SkillArray}</>;
 };
 
 const ProgressBar = ({ skill }) => {

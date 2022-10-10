@@ -48,7 +48,7 @@
                 {
                     "name": "Python",
                     "color": "#FF0000",
-                    "progress": 90,
+                    "progress": 95,
                     "url": null,
                     "className": null
                 },
@@ -60,16 +60,16 @@
                     "className": null
                 },
                 {
-                    "name": "Rest API",
+                    "name": "SQL",
                     "color": "#FF0000",
-                    "progress": 75,
+                    "progress": 70,
                     "url": null,
                     "className": null
                 },
                 {
-                    "name": "PostgresSQL",
+                    "name": "Bash",
                     "color": "#FF0000",
-                    "progress": 70,
+                    "progress": 60,
                     "url": null,
                     "className": null
                 },
@@ -93,6 +93,13 @@
             "name": "Front End Development",
             "skills": [
                 {
+                    "name": "React",
+                    "color": "#FF0000",
+                    "progress": 80,
+                    "url": null,
+                    "className": null
+                },
+                {
                     "name": "Rest API",
                     "color": "#FF0000",
                     "progress": 75,
@@ -115,13 +122,6 @@
                 },
                 {
                     "name": "Javascript",
-                    "color": "#FF0000",
-                    "progress": 50,
-                    "url": null,
-                    "className": null
-                },
-                {
-                    "name": "React",
                     "color": "#FF0000",
                     "progress": 50,
                     "url": null,
@@ -156,7 +156,7 @@
                 {
                     "name": "Linux",
                     "color": "#FF0000",
-                    "progress": 50,
+                    "progress": 70,
                     "url": null,
                     "className": null
                 }
