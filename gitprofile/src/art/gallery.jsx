@@ -34,7 +34,7 @@ function Book(props) {
   const Ialignment = "d-inline float-right";
 
   var bookArray = props.map((picture) => (
-    <Carousel.Item key={picture.name}>
+    <Carousel.Item key={picture.id}>
       <Image
         className={Ialignment}
         src={picture.src}
