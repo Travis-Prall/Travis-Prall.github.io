@@ -9,7 +9,7 @@ export class App extends Component {
     super(props);
     this.state = {
       name: process.env.REACT_APP_PERSON_NAME,
-      resumeData: [],
+      resumeData: []
     };
   }
 
