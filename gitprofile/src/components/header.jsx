@@ -9,7 +9,7 @@ import { db } from "../firestore";
 
 export const KeywordDb = ({ setPageMode }) => {
   const [keywords, setKeywords] = useState([]);
-  const [activeKey, setActiveKey] = useState("Artist");
+  const [activeKey, setActiveKey] = useState("Art");
   const keywordsCollectionRef = collection(db, "keywords");
 
   useEffect(() => {

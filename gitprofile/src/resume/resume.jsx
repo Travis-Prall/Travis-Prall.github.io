@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
+import AccordionContext from "react-bootstrap/AccordionContext";
 import { Accordion } from "react-bootstrap";
 import { db } from "../firestore";
 import { collection, getDocs } from "firebase/firestore";
@@ -27,11 +28,9 @@ export const Resume = ({ pageMode }) => {
     setEducationBlock([]);
     setWorkBlock([]);
     setSkillBlock([]);
-    console.log(blocks);
     const educationRef = blocks.find((obj) => {
       return obj.id === "education";
     });
-    console.log("educationRef", educationRef);
     if (educationRef) {
       setEducationBlock(educationRef);
     }
@@ -68,9 +67,11 @@ const BlockArray = (props) => {
         <ContextAwareToggle eventKey={chunk.title}>
           <Stack>
             <h2>{chunk.title}</h2>
-            <h4>
-              <em>{chunk.subtitle} </em>
-            </h4>
+
+            <h3>
+              {PreTitle(chunk)}
+              {chunk.subtitle}
+            </h3>
           </Stack>
         </ContextAwareToggle>
         <Accordion.Body>{chunk.description}</Accordion.Body>
@@ -83,17 +84,14 @@ const BlockArray = (props) => {
 };
 
 const SkillArray = (props) => {
-  console.log("skillprops", props);
   if (props.array.data) {
     const arrayblock = props.array.data.map((skill) => (
       <Accordion.Item eventKey={skill.title} key={skill.title} className="my-3">
         <ContextAwareToggle eventKey={skill.title}>
-          <Stack>
-            <h2>{skill.title}</h2>
-          </Stack>
+          <h2>{skill.title}</h2>
         </ContextAwareToggle>
         <Accordion.Body>
-          <SkillBars skillset={skill.skillarray} />
+          <SkillBars skillset={skill.skillarray} eventKey={skill.title} />
         </Accordion.Body>
       </Accordion.Item>
     ));
@@ -119,39 +117,57 @@ const Section = (props) => {
   );
 };
 
-const SkillBars = ({ skillset }) => {
+const SkillBars = ({ skillset, eventKey }) => {
+  const { activeEventKey } = useContext(AccordionContext);
+  const isCurrentEventKey = activeEventKey === eventKey;
   const SkillArray = skillset
     .sort((a, b) => b.progress - a.progress)
     .map((skill) => (
       <ul key={skill.name}>
         <h3>{skill.name}</h3>
         <Container fluid className="barskill">
-          <ProgressBar skill={skill}></ProgressBar>
+          <ProgressBar skill={skill} active={isCurrentEventKey}></ProgressBar>
         </Container>
       </ul>
     ));
   return <>{SkillArray}</>;
 };
 
-const ProgressBar = ({ skill }) => {
-  const [value, setValue] = useState(0);
+const ProgressBar = ({ skill, active }) => {
+  const [progressValue, setProgressValue] = useState(0);
 
   useEffect(() => {
-    setValue(skill.progress);
-  }, [skill]);
+    if (active) {
+      setProgressValue(skill.progress);
+    } else {
+      setProgressValue(0);
+    }
+  }, [active]);
 
   return (
     <Row
       className="skills"
       style={{
-        width: value + "%",
-        backgroundColor: skill.color,
-        transition: "all 5s ease-in-out"
+        width: progressValue + "%",
+        background: "linear-gradient(to right, darkred , red)",
+        transition: "all 3s ease-in-out"
       }}
     >
       <span className="slabel">{skill.progress}%</span>
     </Row>
   );
+};
+
+const PreTitle = (chunk) => {
+  if (chunk.pretitle) {
+    return (
+      <>
+        <i>{chunk.pretitle && chunk.pretitle}</i>
+        <span> &bull; </span>
+      </>
+    );
+  }
+  return null;
 };
 
 function ContextAwareToggle({ children, eventKey, callback }) {
@@ -161,8 +177,6 @@ function ContextAwareToggle({ children, eventKey, callback }) {
     eventKey,
     () => callback && callback(eventKey)
   );
-
-  // const isCurrentEventKey = activeEventKey === eventKey;
 
   return (
     <Accordion.Header onClick={decoratedOnClick} className="info">
