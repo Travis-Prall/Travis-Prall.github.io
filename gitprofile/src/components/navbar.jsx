@@ -33,12 +33,6 @@ function MainTabs() {
           <Nav.Link href="#home">Home</Nav.Link>
         </Nav.Item>
         <Nav.Item as="li" className="me-auto">
-          <Nav.Link href="#about">About</Nav.Link>
-        </Nav.Item>
-        <Nav.Item as="li" className="me-auto">
-          <Nav.Link href="#resume">Resume</Nav.Link>
-        </Nav.Item>
-        <Nav.Item as="li" className="me-auto">
           <Nav.Link as={NavLink} to="/art">
             Art
           </Nav.Link>

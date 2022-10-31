@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Networks } from "./social";
 import { collection, getDocs } from "firebase/firestore";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { useState, useEffect } from "react";
 import { db } from "../firestore";
 
@@ -11,6 +12,7 @@ export const KeywordDb = ({ setPageMode }) => {
   const [keywords, setKeywords] = useState([]);
   const [activeKey, setActiveKey] = useState("Art");
   const keywordsCollectionRef = collection(db, "keywords");
+  const analytics = getAnalytics();
 
   useEffect(() => {
     const getKeywords = async () => {
@@ -27,6 +29,7 @@ export const KeywordDb = ({ setPageMode }) => {
   const handleClick = (word) => {
     if (word != activeKey) {
       setActiveKey(word);
+      logEvent(analytics, word);
     }
   };
 
