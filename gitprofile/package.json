@@ -1,6 +1,6 @@
 {
   "name": "gitprofile",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://travisprall.com/",
   "private": true,
   "dependencies": {
@@ -10,7 +10,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
-    "react-ga": "^3.3.1",
+    "react-ga4": "^1.4.1",
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.1"
   },
