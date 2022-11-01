@@ -8,6 +8,7 @@ import AccordionContext from "react-bootstrap/AccordionContext";
 import { Accordion } from "react-bootstrap";
 import { db } from "../firestore";
 import { collection, getDocs } from "firebase/firestore";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 export const Resume = ({ pageMode }) => {
   const [blocks, setBlocks] = useState([]);
@@ -172,11 +173,15 @@ const PreTitle = (chunk) => {
 
 function ContextAwareToggle({ children, eventKey, callback }) {
   // const { activeEventKey } = useContext(AccordionContext);
-
+  const analytics = getAnalytics();
   const decoratedOnClick = useAccordionButton(
     eventKey,
     () => callback && callback(eventKey)
   );
+
+  useEffect(() => {
+    logEvent(analytics, eventKey);
+  }, [eventKey, analytics]);
 
   return (
     <Accordion.Header onClick={decoratedOnClick} className="info">
