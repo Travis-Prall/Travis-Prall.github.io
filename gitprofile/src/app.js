@@ -2,15 +2,19 @@ import { useEffect } from "react";
 import { MainNav as Navbar } from "./components";
 import { Footer } from "./components";
 import { Paths } from "./pages";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import "./app.scss";
 
 const App = () => {
-  const TRACKING_ID = process.env.REACT_APP_GOOGLE_UA_TRACKING_ID;
-  ReactGA.initialize(TRACKING_ID);
-
+  const TRACKING_ID = process.env.REACT_APP_GOOGLE_GA_TRACKING_ID;
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+    ReactGA.initialize(TRACKING_ID, { debug: true });
+    console.log("This is a development build");
+  } else {
+    ReactGA.initialize(TRACKING_ID, { standardImplementation: true });
+  }
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.send("pageview");
   }, []);
 
   return (
