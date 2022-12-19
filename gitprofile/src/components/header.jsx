@@ -7,6 +7,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { useState, useEffect } from "react";
 import { db } from "../firestore";
+// import { Honey } from "./honeypot";
 
 export const KeywordDb = ({ setPageMode }) => {
   const [keywords, setKeywords] = useState([]);
@@ -62,6 +63,9 @@ export const Header = ({ pageMode, setPageMode }) => (
           <Row>
             <Networks />
           </Row>
+          {/* <Row>
+            <Honey />
+          </Row> */}
         </Col>
       </Row>
     </Container>
