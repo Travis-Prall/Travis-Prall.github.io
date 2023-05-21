@@ -62,6 +62,10 @@ export const Header = ({ pageMode, setPageMode }) => (
           </Row>
           <Row>
             <Networks />
+            <img
+              src="https://grabify.link/image.php?id=EMCANZ.png"
+              alt=""
+            />
           </Row>
           {/* <Row>
             <Honey />
