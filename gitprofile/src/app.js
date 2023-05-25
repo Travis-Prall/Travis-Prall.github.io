@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { MainNav as Navbar } from "./components";
-import { Footer } from "./components";
-import { Paths } from "./pages";
+import { Footer, Home } from "./components";
 import ReactGA from "react-ga4";
 import "./app.scss";
 
@@ -20,7 +19,7 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
-      <Paths />
+      <Home />
       <Footer />
     </div>
   );

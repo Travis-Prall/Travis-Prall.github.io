@@ -1,5 +1,5 @@
-import { Header } from "../components";
-import { About } from "../components";
+import { Header } from ".";
+import { About } from ".";
 import { Resume } from "../resume";
 import { useState } from "react";
 
