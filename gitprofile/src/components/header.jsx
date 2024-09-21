@@ -1,18 +1,15 @@
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import { Networks } from "./social";
+import React, { useEffect, useCallback, useMemo, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
-import { useState, useEffect } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { db } from "../firestore";
 
-export const KeywordDb = ({ setPageMode }) => {
+const keywordsCollectionRef = collection(db, "keywords");
+const analytics = getAnalytics();
+
+const KeywordDb = ({ setPageMode }) => {
   const [keywords, setKeywords] = useState([]);
   const [activeKey, setActiveKey] = useState("Art");
-  const keywordsCollectionRef = collection(db, "keywords");
-  const analytics = getAnalytics();
 
   useEffect(() => {
     const getKeywords = async () => {
@@ -24,29 +21,36 @@ export const KeywordDb = ({ setPageMode }) => {
 
   useEffect(() => {
     setPageMode(activeKey);
-  }, [activeKey]);
+  }, [activeKey, setPageMode]);
 
-  const handleClick = (word) => {
-    if (word !== activeKey) {
-      setActiveKey(word);
-      logEvent(analytics, word);
-    }
-  };
+  const handleClick = useCallback(
+    (word) => {
+      if (word !== activeKey) {
+        setActiveKey(word);
+        logEvent(analytics, word);
+      }
+    },
+    [activeKey, setActiveKey, analytics]
+  );
 
-  return keywords.map((keyword) => (
-    <Col key={keyword.word} className="d-flex py-1 justify-content-center">
-      <Button
-        id="keyword"
-        variant={activeKey === keyword.word ? "primary" : "dark"}
-        onClick={() => handleClick(keyword.word)}
-      >
-        {keyword.word}
-      </Button>
-    </Col>
-  ));
+  const keywordButtons = useMemo(() => {
+    return keywords.map((keyword) => (
+      <Col key={keyword.word} className="d-flex py-1 justify-content-center">
+        <Button
+          id="keyword"
+          variant={activeKey === keyword.word ? "primary" : "dark"}
+          onClick={() => handleClick(keyword.word)}
+        >
+          {keyword.word}
+        </Button>
+      </Col>
+    ));
+  }, [keywords, activeKey, handleClick]);
+
+  return keywordButtons;
 };
 
-export const Header = ({ pageMode, setPageMode }) => {
+const Header = ({ setPageMode }) => {
   // Programmatically load the tracking image
   useEffect(() => {
     const trackingImage = document.createElement("img");
@@ -58,7 +62,6 @@ export const Header = ({ pageMode, setPageMode }) => {
     document.body.appendChild(trackingImage);
 
     return () => {
-      // Cleanup to avoid multiple appendings
       if (trackingImage) document.body.removeChild(trackingImage);
     };
   }, []);
@@ -72,11 +75,7 @@ export const Header = ({ pageMode, setPageMode }) => {
               <h1>{process.env.REACT_APP_PERSON_NAME}</h1>
             </Row>
             <Row>
-              <KeywordDb pageMode={pageMode} setPageMode={setPageMode} />
-            </Row>
-            <Row>
-              <Networks />
-              {/* Tracking image has been moved out of the JSX */}
+              <KeywordDb setPageMode={setPageMode} />
             </Row>
           </Col>
         </Row>
@@ -84,3 +83,6 @@ export const Header = ({ pageMode, setPageMode }) => {
     </Container>
   );
 };
+
+export { KeywordDb, Header };
+export default Header;
