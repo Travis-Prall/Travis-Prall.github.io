@@ -1,8 +1,9 @@
 import { Nav, Navbar } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import React, { memo } from "react";
 
-export const MainNav = () => (
+const MainNavComponent = () => (
   <Container fluid className="pb-5">
     <Row>
       <Navbar
@@ -21,7 +22,9 @@ export const MainNav = () => (
   </Container>
 );
 
-function MainTabs() {
+export const MainNav = memo(MainNavComponent);
+
+const MainTabsComponent = () => {
   return (
     <Nav className="justify-content-start" defaultActiveKey="#home">
       <Nav.Item as="li" className="me-auto">
@@ -29,4 +32,6 @@ function MainTabs() {
       </Nav.Item>
     </Nav>
   );
-}
+};
+
+const MainTabs = memo(MainTabsComponent);
