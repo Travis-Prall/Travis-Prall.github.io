@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.79aa1b3f.css",
-    "main.js": "/static/js/main.6c763a9e.js",
+    "main.css": "/static/css/main.d983ef91.css",
+    "main.js": "/static/js/main.57afa21c.js",
     "static/media/background.png": "/static/media/background.41c225d24013c4cba03c.png",
     "static/media/dark-honeycomb.png": "/static/media/dark-honeycomb.b591ad6199194e173bfb.png",
     "index.html": "/index.html",
-    "main.79aa1b3f.css.map": "/static/css/main.79aa1b3f.css.map",
-    "main.6c763a9e.js.map": "/static/js/main.6c763a9e.js.map"
+    "main.d983ef91.css.map": "/static/css/main.d983ef91.css.map",
+    "main.57afa21c.js.map": "/static/js/main.57afa21c.js.map"
   },
   "entrypoints": [
-    "static/css/main.79aa1b3f.css",
-    "static/js/main.6c763a9e.js"
+    "static/css/main.d983ef91.css",
+    "static/js/main.57afa21c.js"
   ]
 }
