@@ -29,3 +29,12 @@ When assisting with this project, please adhere to the following guidelines:
     licenses.
 8.  **User Experience:** For any UI/UX related suggestions, prioritize
     simplicity, intuitiveness, and fast load times.
+9.  **GitHub Commits:**
+    - Write clear, concise, and descriptive commit messages.
+    - Follow conventional commit message format (e.g., `feat: add new feature`,
+      `fix: resolve bug`, `docs: update documentation`).
+    - Group related changes into logical commits.
+    - Ensure commits are atomic and represent a single unit of work.
+    - Before committing, ensure all tests pass and the code lints correctly.
+    - Push changes to the appropriate branch, typically `main` or a feature
+      branch.
