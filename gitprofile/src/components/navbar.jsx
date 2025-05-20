@@ -1,37 +1,42 @@
-import { Nav, Navbar } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
 import React, { memo } from "react";
+import { Nav, Navbar, Container } from "react-bootstrap";
 
-const MainNavComponent = () => (
-  <Container fluid className="pb-5">
-    <Row>
-      <Navbar
-        expand="sm"
-        bg="dark"
-        variant="dark"
-        fixed="top"
-        collapseOnSelect="true"
-      >
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <MainTabs />
-        </Navbar.Collapse>
-      </Navbar>
-    </Row>
-  </Container>
-);
+// MainTabs component - responsible for rendering navigation links
+const MainTabsInternal = () => {
+  const navLinks = [{ href: "#home", label: "Home" }];
 
-export const MainNav = memo(MainNavComponent);
-
-const MainTabsComponent = () => {
   return (
-    <Nav className="justify-content-start" defaultActiveKey="#home">
-      <Nav.Item as="li" className="me-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-      </Nav.Item>
+    <Nav className="me-auto" defaultActiveKey="#home">
+      {navLinks.map((link) => (
+        <Nav.Item as="li" key={link.href}>
+          <Nav.Link href={link.href} onClick={() => {}}>
+            {link.label}
+          </Nav.Link>
+        </Nav.Item>
+      ))}
     </Nav>
   );
 };
+MainTabsInternal.displayName = "MainTabs";
+const MainTabs = memo(MainTabsInternal);
 
-const MainTabs = memo(MainTabsComponent);
+// MainNav component - the main navigation bar
+const MainNavInternal = () => (
+  <Navbar
+    expand="sm"
+    bg="dark"
+    variant="dark"
+    fixed="top"
+    collapseOnSelect
+    className="shadow-sm"
+  >
+    <Container fluid>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <MainTabs />
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
+);
+MainNavInternal.displayName = "MainNav";
+export const MainNav = memo(MainNavInternal);

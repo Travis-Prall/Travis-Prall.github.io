@@ -1,29 +1,39 @@
-import React, { useState, useEffect, memo } from "react";
+import React from "react"; // Removed useState, useEffect as they are not needed
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Networks } from "./social.jsx";
+import { Networks } from "./social"; // Removed .jsx extension
 
-const FooterComponent = () => {
-  const [currentYear, setYear] = useState(new Date().getFullYear());
-
-  useEffect(() => {
-    // Set the year only once on component mount
-    setYear(new Date().getFullYear());
-  }, []); // Empty dependency array ensures this runs only once
+// Functional component can be directly exported and memoized if needed.
+// No need for a separate FooterComponent if it's not used elsewhere or for specific HOC patterns.
+const Footer = React.memo(() => {
+  // Directly use React.memo here
+  const currentYear = new Date().getFullYear(); // Calculate year directly, no need for state/effect
 
   return (
-    <Container fluid as="footer">
-      <Row>
-        <Networks />
+    <Container fluid as="footer" className="py-3 mt-auto">
+      {" "}
+      {/* Added padding and margin for better spacing */}
+      <Row className="justify-content-center mb-2">
+        {" "}
+        {/* Centered social networks and added margin */}
+        <Col xs="auto">
+          {" "}
+          {/* Ensure Networks take only necessary space */}
+          <Networks />
+        </Col>
       </Row>
-      <Row className="justify-content-md-center">
-        <Col className="copyright">
-          &copy; Copyright {currentYear && currentYear} Travis Prall
+      <Row className="justify-content-center">
+        <Col xs="auto" className="copyright text-center">
+          {" "}
+          {/* Ensured copyright is centered and takes auto width */}
+          &copy; Copyright {currentYear} Travis Prall
         </Col>
       </Row>
     </Container>
   );
-};
+});
 
-export const Footer = memo(FooterComponent);
+Footer.displayName = "Footer"; // Added display name for better debugging
+
+export { Footer }; // Consistent export style
