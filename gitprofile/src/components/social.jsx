@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firestore";
 import Placeholder from "react-bootstrap/Placeholder";
 import Alert from "react-bootstrap/Alert";
+import { FALLBACK_SOCIAL_LINKS } from "../content/siteContent";
 
 const SocialLinksInternal = () => {
   const [socialLinks, setSocialLinks] = useState([]);
@@ -49,32 +50,36 @@ const SocialLinksInternal = () => {
     );
   }
 
-  if (error) {
-    return (
-      <Alert variant="warning" className="text-center p-1">
-        {error}
-      </Alert>
-    );
-  }
+  const displayLinks =
+    socialLinks.length > 0 ? socialLinks : FALLBACK_SOCIAL_LINKS;
 
-  if (socialLinks.length === 0) {
+  if (displayLinks.length === 0) {
     return (
       <p className="text-center text-muted py-1">No social links available.</p>
     );
   }
 
-  return socialLinks.map((network) => (
-    <a
-      key={network.id}
-      href={network.url}
-      title={network.tip}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={network.tip || network.className}
-    >
-      <i className={`${network.className} fs-4`}></i>
-    </a>
-  ));
+  return (
+    <>
+      {error && (
+        <Alert variant="warning" className="text-center p-1 w-100">
+          {error}
+        </Alert>
+      )}
+      {displayLinks.map((network) => (
+        <a
+          key={network.id}
+          href={network.url}
+          title={network.tip}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={network.tip || network.className}
+        >
+          <i className={`${network.className} fs-4`}></i>
+        </a>
+      ))}
+    </>
+  );
 };
 SocialLinksInternal.displayName = "SocialLinks";
 const SocialLinks = memo(SocialLinksInternal);

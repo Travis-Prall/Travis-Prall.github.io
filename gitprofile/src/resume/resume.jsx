@@ -143,7 +143,7 @@ const ProgressBar = ({ skill, active }) => {
     } else {
       setProgressValue(0);
     }
-  }, [active]);
+  }, [active, skill.progress]);
 
   return (
     <Row

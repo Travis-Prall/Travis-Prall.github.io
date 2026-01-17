@@ -56,3 +56,9 @@ out/
 ../.github/agents/
 ../.github/instructions/
 ../.github/prompts/
+
+
+.github/agents/
+.github/instructions/
+.github/prompts/
+.github/copilot-instructions.md

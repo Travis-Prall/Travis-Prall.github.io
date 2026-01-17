@@ -7,6 +7,7 @@ import Image from "react-bootstrap/Image";
 import Placeholder from "react-bootstrap/Placeholder";
 import Alert from "react-bootstrap/Alert"; // Added for error display
 import { db } from "../firestore";
+import { SITE_PROFILE } from "../content/siteContent";
 
 const BioPlaceholder = () => (
   // Renamed for clarity and convention
@@ -24,6 +25,7 @@ export const About = () => {
   const [bio, setBio] = useState(null); // Initialize with null
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const bioText = bio?.bio || SITE_PROFILE.bio;
 
   useEffect(() => {
     const fetchBio = async () => {
@@ -68,11 +70,11 @@ export const About = () => {
           <h2>About Me</h2>
           {loading && <BioPlaceholder />}
           {error && <Alert variant="danger">{error}</Alert>}
-          {bio && !loading && !error && (
+          {!loading && (
             <Row>
               <Col>
                 {/* Assuming bio.bio is a string. If it can contain HTML, ensure it's sanitized or use dangerouslySetInnerHTML with caution. */}
-                <p>{bio.bio}</p>
+                <p>{bioText}</p>
               </Col>
             </Row>
           )}
