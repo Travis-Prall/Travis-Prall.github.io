@@ -5,6 +5,7 @@ import { db } from "../firestore";
 import Placeholder from "react-bootstrap/Placeholder";
 import Alert from "react-bootstrap/Alert";
 import { FALLBACK_SOCIAL_LINKS } from "../content/siteContent";
+import { trackSocialClick } from "../utils/analytics";
 
 const SocialLinksInternal = () => {
   const [socialLinks, setSocialLinks] = useState([]);
@@ -74,6 +75,7 @@ const SocialLinksInternal = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={network.tip || network.className}
+          onClick={() => trackSocialClick(network.tip || network.className || "social_link")}
         >
           <i className={`${network.className} fs-4`}></i>
         </a>

@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
+import { logEvent } from "../utils/analytics";
 
 // MainTabs component - responsible for rendering navigation links
 const MainTabsInternal = () => {
@@ -9,7 +10,10 @@ const MainTabsInternal = () => {
     <Nav className="me-auto" defaultActiveKey="#home">
       {navLinks.map((link) => (
         <Nav.Item as="li" key={link.href}>
-          <Nav.Link href={link.href} onClick={() => {}}>
+          <Nav.Link
+            href={link.href}
+            onClick={() => logEvent("Navigation", "click", link.href)}
+          >
             {link.label}
           </Nav.Link>
         </Nav.Item>

@@ -9,9 +9,12 @@ import { Accordion } from "react-bootstrap";
 import { db } from "../firestore";
 import { collection, getDocs } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { logEvent as logAnalyticsEvent } from "../utils/analytics";
+import { useSectionTracking } from "../hooks/useSectionTracking";
 
 export const Resume = ({ pageMode }) => {
   const [blocks, setBlocks] = useState([]);
+  const resumeRef = useSectionTracking("Resume");
 
   useEffect(() => {
     const fetchBlocks = async () => {
@@ -36,7 +39,7 @@ export const Resume = ({ pageMode }) => {
 
   if (blocks.length > 0) {
     return (
-      <Container fluid as="section" id="resume">
+      <Container fluid as="section" id="resume" ref={resumeRef}>
         <BlockArray array={educationBlock} title="Education" />
         <BlockArray array={workBlock} title="Work" />
         <SkillArray array={skillBlock} title="Skills" />
@@ -161,6 +164,7 @@ function ContextAwareToggle({ children, eventKey, callback }) {
   const analytics = getAnalytics();
   const decoratedOnClick = useAccordionButton(eventKey, (event) => {
     logEvent(analytics, "accordion_toggle", { id: eventKey });
+    logAnalyticsEvent("Content", "expand", eventKey);
     if (callback) callback(eventKey);
   });
 
