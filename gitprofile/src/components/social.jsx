@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import Stack from "react-bootstrap/Stack";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firestore";

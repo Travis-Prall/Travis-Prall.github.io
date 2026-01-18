@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getDoc, doc } from "firebase/firestore";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Placeholder from "react-bootstrap/Placeholder";
-import Alert from "react-bootstrap/Alert"; // Added for error display
+import Alert from "react-bootstrap/Alert";
 import { db } from "../firestore";
 import { SITE_PROFILE } from "../content/siteContent";
 
@@ -60,7 +60,7 @@ export const About = () => {
           {" "}
           {/* Added text-center for better image centering on smaller screens */}
           <Image
-            src="/images/profile_image.jpg" // Consider moving to a constants file or importing if used elsewhere
+            src="/images/profile_image.png" // Consider moving to a constants file or importing if used elsewhere
             className="profile-pic img-fluid rounded-circle" // Added img-fluid and rounded-circle for responsiveness and style
             alt="Travis Prall Profile Pic"
             // fluid prop is redundant if img-fluid class is used

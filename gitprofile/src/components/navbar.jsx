@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 
 // MainTabs component - responsible for rendering navigation links

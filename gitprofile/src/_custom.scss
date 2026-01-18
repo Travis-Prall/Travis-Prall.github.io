@@ -19,22 +19,34 @@ $textPrimary: #fff;
 $textSecondary: rgba(255, 255, 255, 0.7);
 $textdisabled: rgba(255, 255, 255, 0.5);
 
-$hightlight-color: rgb(210, 0, 0);
+$gold-primary: #D4AF37;
+$gold-hover: #FFD700;
+$gold-muted: #B8860B;
+$dark-bg-deep: #0f0f0f;
+$dark-bg-panel: #161415;
+
+$hightlight-color: $gold-primary;
 
 /**========================================================================
  *                           Override Defaults
  *========================================================================**/
 // Override default variables before the import
-$body-bg: $composition1;
+$body-bg: $dark-bg-deep;
 $accordion-icon-active-color: $hightlight-color;
-$accordion-bg: $composition9;
-$primary: red;
+$accordion-bg: $dark-bg-panel;
+$primary: $gold-primary;
+$secondary: $gold-muted;
+$light: #e0e0e0;
+$dark: #000000;
 
 // Options
 //
 // Quickly modify global styling by enabling or disabling optional features.
 $enable-shadows: true;
 $enable-gradients: true;
+$border-radius: 0;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';

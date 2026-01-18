@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,41 +12,26 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 export const Resume = ({ pageMode }) => {
   const [blocks, setBlocks] = useState([]);
-  const [educationBlock, setEducationBlock] = useState([]);
-  const [workBlock, setWorkBlock] = useState([]);
-  const [skillBlock, setSkillBlock] = useState([]);
 
   useEffect(() => {
-    const BlocksCollectionRef = collection(db, pageMode);
-    const getBlocks = async () => {
-      const data = await getDocs(BlocksCollectionRef);
-      setBlocks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const fetchBlocks = async () => {
+      try {
+        const blocksCollectionRef = collection(db, pageMode);
+        const data = await getDocs(blocksCollectionRef);
+        setBlocks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      } catch (error) {
+        console.error("Error fetching resume blocks:", error);
+      }
     };
-    getBlocks();
+    fetchBlocks();
   }, [pageMode]);
 
-  useEffect(() => {
-    setEducationBlock([]);
-    setWorkBlock([]);
-    setSkillBlock([]);
-    const educationRef = blocks.find((obj) => {
-      return obj.id === "education";
-    });
-    if (educationRef) {
-      setEducationBlock(educationRef);
-    }
-    const workRef = blocks.find((obj) => {
-      return obj.id === "work";
-    });
-    if (workRef) {
-      setWorkBlock(workRef);
-    }
-    const skillRef = blocks.find((obj) => {
-      return obj.id === "skills";
-    });
-    if (skillRef) {
-      setSkillBlock(skillRef);
-    }
+  const { educationBlock, workBlock, skillBlock } = useMemo(() => {
+    return {
+      educationBlock: blocks.find((obj) => obj.id === "education") || [],
+      workBlock: blocks.find((obj) => obj.id === "work") || [],
+      skillBlock: blocks.find((obj) => obj.id === "skills") || [],
+    };
   }, [blocks]);
 
   if (blocks.length > 0) {
@@ -150,11 +135,12 @@ const ProgressBar = ({ skill, active }) => {
       className="skills"
       style={{
         width: progressValue + "%",
-        background: "linear-gradient(to right, darkred , red)",
+        background: "linear-gradient(to right, #B8860B, #FFD700)",
+        boxShadow: "0 0 10px rgba(212, 175, 55, 0.5)",
         transition: "all 3s ease-in-out"
       }}
     >
-      <span className="slabel">{skill.progress}%</span>
+      <span className="slabel" style={{ color: "#000", fontWeight: "bold" }}>{skill.progress}%</span>
     </Row>
   );
 };
@@ -172,16 +158,11 @@ const PreTitle = (chunk) => {
 };
 
 function ContextAwareToggle({ children, eventKey, callback }) {
-  // const { activeEventKey } = useContext(AccordionContext);
   const analytics = getAnalytics();
-  const decoratedOnClick = useAccordionButton(
-    eventKey,
-    () => callback && callback(eventKey)
-  );
-
-  useEffect(() => {
-    logEvent(analytics, eventKey);
-  }, [eventKey, analytics]);
+  const decoratedOnClick = useAccordionButton(eventKey, (event) => {
+    logEvent(analytics, "accordion_toggle", { id: eventKey });
+    if (callback) callback(eventKey);
+  });
 
   return (
     <Accordion.Header onClick={decoratedOnClick} className="info">

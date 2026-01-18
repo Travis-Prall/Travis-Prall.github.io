@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { MainNav as Navbar, Footer, Home } from "./components";
 import ReactGA from "react-ga4";
 import "./app.scss";
@@ -8,12 +8,15 @@ const App = () => {
 
   useEffect(() => {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-      ReactGA.initialize(TRACKING_ID, { debug: true });
-      console.log("This is a development build");
+      ReactGA.initialize(TRACKING_ID, {
+        debug: true,
+        testMode: true,
+      });
+      console.log("Analytics initialized in development mode");
     } else {
-      ReactGA.initialize(TRACKING_ID, { standardImplementation: true });
+      ReactGA.initialize(TRACKING_ID);
     }
-    ReactGA.send("pageview");
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
   }, [TRACKING_ID]);
 
   return (
