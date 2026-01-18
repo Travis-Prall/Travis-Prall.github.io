@@ -2,7 +2,6 @@ import { memo } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { SocialMediaBar } from "./social";
 
 const Footer = memo(() => {
   const currentYear = new Date().getFullYear();
