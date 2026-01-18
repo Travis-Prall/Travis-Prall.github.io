@@ -61,27 +61,27 @@ const MatrixBackground = memo(() => {
 
     const ctx = canvas.getContext("2d", { alpha: false });
     let animationFrameId;
-    
+
     // Configuration
     const fontSize = 26;
     const columnWidth = 60; // Wider horizontal spacing for elegance
     const bg = "#0f0f0f";
-    
+
     // State
     let columns = []; // { x, gridChars[], dropY, speed, trailLen, nextSpawnDelay }
 
     const initColumns = (width, height) => {
       const colCount = Math.ceil(width / columnWidth);
       const rowCount = Math.ceil(height / fontSize) + 2; // +2 for buffer
-      
+
       const newColumns = [];
-      
+
       for (let i = 0; i < colCount; i++) {
         const gridChars = [];
         for (let j = 0; j < rowCount; j++) {
            gridChars.push(HIEROGLYPHS[Math.floor(Math.random() * HIEROGLYPHS.length)]);
         }
-        
+
         newColumns.push({
           x: i * columnWidth + columnWidth / 2,
           gridChars,
@@ -117,7 +117,7 @@ const MatrixBackground = memo(() => {
 
       // 2. Update and Draw Columns
       const height = canvas.height;
-      
+
       columns.forEach(col => {
         // Update Light Position
         if (col.nextSpawnDelay > 0) {
@@ -133,53 +133,53 @@ const MatrixBackground = memo(() => {
           col.speed = 0.2 + Math.random() * 0.5; // Reset speed
           col.trailLen = 8 + Math.random() * 8;  // Reset trail length
           col.nextSpawnDelay = 400 + Math.random() * 2000; // Long pause for sparsity (10% activity feel)
-          
-          // Optional: Reshuffle grid chars for variety on next pass? 
+
+          // Optional: Reshuffle grid chars for variety on next pass?
           // Instructions say "Stationary: symbols never move". So we keep gridChars as is.
         }
 
         // Render visible part of the trail
         const headY = col.dropY;
         const tailY = headY - (col.trailLen * fontSize);
-        
+
         // Optimization: Only loop through rows that could be visible in this column
         // We render the whole column grid? No, just the lit part.
-        // But "base color" might imply faint visibility. 
+        // But "base color" might imply faint visibility.
         // User said "apearing and siapearing randomly", let's stick to "Lit Only" to be safe and clean.
-        
+
         // Find row indices that intersect with [tailY, headY]
         const rangeStart = Math.floor(tailY / fontSize);
         const rangeEnd = Math.floor((headY + fontSize) / fontSize); // +fontSize for head bloom
-        
+
         const startRow = Math.max(0, rangeStart);
         const endRow = Math.min(col.gridChars.length - 1, rangeEnd);
 
         for (let r = startRow; r <= endRow; r++) {
           const char = col.gridChars[r];
           const cy = r * fontSize + fontSize / 2; // Center Y of glyph
-          
+
           // Calculate intensity
           // Distance from head
           const dist = headY - cy;
-          
+
           // If char is ahead of the light (dist < 0), it's dark (unless we want 'bloom' to reach ahead)
           // If char is behind tail (dist > trailLen * fontSize), it's dark
-          
+
           if (dist >= -fontSize && dist <= (col.trailLen * fontSize) + fontSize) {
              let alpha = 0;
              // Head Area (Bloom)
              if (Math.abs(dist) < fontSize) {
                 alpha = 1;
-             } 
+             }
              // Trail Area (Fade)
              else if (dist > 0) {
                 alpha = 1 - (dist / (col.trailLen * fontSize));
              }
-             
+
              if (alpha > 0.05) {
                 ctx.save();
                 ctx.globalAlpha = alpha;
-                
+
                 // Bloom effect at the head
                 if (alpha > 0.8) {
                    ctx.shadowBlur = 15;
@@ -189,7 +189,7 @@ const MatrixBackground = memo(() => {
                    ctx.shadowBlur = 0;
                    ctx.fillStyle = "#D4AF37"; // Gold loop
                 }
-                
+
                 ctx.fillText(char, col.x, cy);
                 ctx.restore();
              }
