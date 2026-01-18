@@ -53,17 +53,12 @@ export const About = () => {
 
   return (
     <Container fluid as="section" id="about" className="my-4">
-      <Row className="justify-content-center align-items-center">
-        {" "}
-        {/* Added align-items-center for better vertical alignment */}
-        <Col lg={3} className="p-3 text-center">
-          {" "}
-          {/* Added text-center for better image centering on smaller screens */}
+      <Row className="justify-content-center align-items-stretch">
+        <Col lg={3} className="text-center">
           <Image
-            src="/images/profile_image.png" // Consider moving to a constants file or importing if used elsewhere
-            className="profile-pic img-fluid rounded-circle" // Added img-fluid and rounded-circle for responsiveness and style
+            src="/images/profile_image.png"
+            className="profile-pic"
             alt="Travis Prall Profile Pic"
-            // fluid prop is redundant if img-fluid class is used
           />
         </Col>
         <Col lg={9} className="bio">

@@ -5,6 +5,8 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { db } from "../firestore";
 import { FALLBACK_KEYWORDS, SITE_PROFILE } from "../content/siteContent";
 
+import { SocialMediaBar } from "./social";
+
 const keywordsCollectionRef = collection(db, "keywords");
 const analytics = getAnalytics();
 const FALLBACK_KEYWORD_ITEMS = FALLBACK_KEYWORDS.map((word) => ({
@@ -64,6 +66,7 @@ const MatrixBackground = memo(() => {
 
     // Configuration
     const fontSize = 26;
+    const verticalSpacing = fontSize * 1.6; // Increased vertical spacing
     const columnWidth = 60; // Wider horizontal spacing for elegance
     const bg = "#0f0f0f";
 
@@ -72,7 +75,7 @@ const MatrixBackground = memo(() => {
 
     const initColumns = (width, height) => {
       const colCount = Math.ceil(width / columnWidth);
-      const rowCount = Math.ceil(height / fontSize) + 2; // +2 for buffer
+      const rowCount = Math.ceil(height / verticalSpacing) + 2; // +2 for buffer
 
       const newColumns = [];
 
@@ -128,7 +131,7 @@ const MatrixBackground = memo(() => {
 
         // Reset if trail has passed the bottom
         // Convert dropY (pixels) to roughly row index for check
-        if (col.dropY - (col.trailLen * fontSize) > height) {
+        if (col.dropY - (col.trailLen * verticalSpacing) > height) {
           col.dropY = -50 - Math.random() * 100;
           col.speed = 0.2 + Math.random() * 0.5; // Reset speed
           col.trailLen = 8 + Math.random() * 8;  // Reset trail length
@@ -140,54 +143,46 @@ const MatrixBackground = memo(() => {
 
         // Render visible part of the trail
         const headY = col.dropY;
-        const tailY = headY - (col.trailLen * fontSize);
-
-        // Optimization: Only loop through rows that could be visible in this column
-        // We render the whole column grid? No, just the lit part.
-        // But "base color" might imply faint visibility.
-        // User said "apearing and siapearing randomly", let's stick to "Lit Only" to be safe and clean.
+        const tailY = headY - (col.trailLen * verticalSpacing);
 
         // Find row indices that intersect with [tailY, headY]
-        const rangeStart = Math.floor(tailY / fontSize);
-        const rangeEnd = Math.floor((headY + fontSize) / fontSize); // +fontSize for head bloom
+        const rangeStart = Math.floor(tailY / verticalSpacing);
+        const rangeEnd = Math.floor((headY + verticalSpacing) / verticalSpacing); // +spacing for head bloom
 
         const startRow = Math.max(0, rangeStart);
         const endRow = Math.min(col.gridChars.length - 1, rangeEnd);
 
         for (let r = startRow; r <= endRow; r++) {
           const char = col.gridChars[r];
-          const cy = r * fontSize + fontSize / 2; // Center Y of glyph
+          const cy = r * verticalSpacing + verticalSpacing / 2; // Center Y of glyph
 
           // Calculate intensity
-          // Distance from head
           const dist = headY - cy;
 
-          // If char is ahead of the light (dist < 0), it's dark (unless we want 'bloom' to reach ahead)
-          // If char is behind tail (dist > trailLen * fontSize), it's dark
-
-          if (dist >= -fontSize && dist <= (col.trailLen * fontSize) + fontSize) {
+          // Check visibility range
+          if (dist >= -verticalSpacing && dist <= (col.trailLen * verticalSpacing) + verticalSpacing) {
              let alpha = 0;
-             // Head Area (Bloom)
-             if (Math.abs(dist) < fontSize) {
+             // Head Area (Subtle Bloom)
+             if (Math.abs(dist) < verticalSpacing * 0.8) {
                 alpha = 1;
              }
              // Trail Area (Fade)
              else if (dist > 0) {
-                alpha = 1 - (dist / (col.trailLen * fontSize));
+                alpha = 1 - (dist / (col.trailLen * verticalSpacing));
              }
 
              if (alpha > 0.05) {
                 ctx.save();
                 ctx.globalAlpha = alpha;
 
-                // Bloom effect at the head
-                if (alpha > 0.8) {
-                   ctx.shadowBlur = 15;
-                   ctx.shadowColor = `rgba(212, 175, 55, ${alpha})`;
-                   ctx.fillStyle = "#ffffff"; // White hot center
+                // Active Head: Very subtle glow
+                if (alpha > 0.9) {
+                   ctx.shadowBlur = 8; // Very slight glow
+                   ctx.shadowColor = `rgba(255, 223, 0, 0.4)`;
+                   ctx.fillStyle = "#FFEC8B"; // LightGoldenrodYellow
                 } else {
                    ctx.shadowBlur = 0;
-                   ctx.fillStyle = "#D4AF37"; // Gold loop
+                   ctx.fillStyle = "#D4AF37"; // Standard gold
                 }
 
                 ctx.fillText(char, col.x, cy);
@@ -386,9 +381,13 @@ const Header = ({ pageMode, setPageMode }) => {
                   backdropFilter: "blur(5px)"
                 }}
               >
-                <h1 className="display-4 fw-bold text-white mb-4" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}>
+                <h1 className="display-4 fw-bold text-white mb-2" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}>
                   {process.env.REACT_APP_PERSON_NAME || SITE_PROFILE.name}
                 </h1>
+                
+                <div className="mb-4">
+                  <SocialMediaBar />
+                </div>
 
                 <hr style={{ borderColor: "#D4AF37", opacity: 0.5, margin: "2rem 0" }} />
 

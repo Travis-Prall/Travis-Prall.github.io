@@ -137,7 +137,7 @@ const ProgressBar = ({ skill, active }) => {
         width: progressValue + "%",
         background: "linear-gradient(to right, #B8860B, #FFD700)",
         boxShadow: "0 0 10px rgba(212, 175, 55, 0.5)",
-        transition: "all 3s ease-in-out"
+        transition: "width 3s ease-in-out 1s"
       }}
     >
       <span className="slabel" style={{ color: "#000", fontWeight: "bold" }}>{skill.progress}%</span>

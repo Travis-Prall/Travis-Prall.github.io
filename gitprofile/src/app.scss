@@ -35,8 +35,13 @@ body {
 
 .accordion-body {
   box-shadow: none;
-  transition: all 1s ease-in-out;
+  // removed transition: all to prevent conflicts with collapse animation
+  color: $composition8;
   // border-style: $border-style;
+}
+
+.collapsing {
+  transition: height 1s ease-in-out !important;
 }
 
 .accordion-button {
@@ -213,6 +218,9 @@ header {
 
   .profile-pic {
     @include standardbox;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .bio {

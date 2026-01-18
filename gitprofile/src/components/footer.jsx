@@ -8,14 +8,9 @@ const Footer = memo(() => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Container fluid as="footer" className="py-3 mt-auto">
-      <Row className="justify-content-center mb-2">
-        <Col xs="auto">
-          <SocialMediaBar />
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col xs="auto" className="copyright text-center">
+    <Container fluid as="footer" className="d-flex align-items-center justify-content-center py-2 mt-auto" style={{ height: "56px" }}>
+      <Row className="m-0 w-100 justify-content-center">
+        <Col xs="auto" className="copyright text-center p-0 align-self-center">
           &copy; Copyright {currentYear} Travis Prall
         </Col>
       </Row>
