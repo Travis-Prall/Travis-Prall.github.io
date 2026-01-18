@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useMemo, useState, useRef, memo } from "react";
+import { useEffect, useCallback, useState, useRef, memo, use, Suspense } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { Container, Row, Col, Button } from "react-bootstrap";
@@ -14,6 +14,20 @@ const FALLBACK_KEYWORD_ITEMS = FALLBACK_KEYWORDS.map((word) => ({
   word
 }));
 
+// Pre-fetch keywords promise (React 19 pattern)
+const keywordsPromise = getDocs(keywordsCollectionRef)
+  .then((data) => {
+    const fetchedKeywords = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id
+    }));
+    return fetchedKeywords.length > 0 ? fetchedKeywords : FALLBACK_KEYWORD_ITEMS;
+  })
+  .catch((e) => {
+    console.error("Error fetching keywords:", e);
+    return FALLBACK_KEYWORD_ITEMS;
+  });
+
 // Ancient Egyptian Hieroglyphs for the matrix effect
 // Note: These are astral plane characters (surrogate pairs in JS strings), so we must spread them into an array to count and access them correctly.
 const HIEROGLYPHS = [..."𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏𓀐𓀑𓀒𓀓𓀔𓀕𓀖𓀗𓀘𓀙𓀚𓀛𓀜𓀝𓀞𓀟𓀠𓀡𓀢𓀣𓀤𓀥𓀦𓀧𓀨𓀩𓀪𓀫𓀬𓀭𓀮𓀯"];
@@ -24,12 +38,6 @@ const MatrixBackground = memo(() => {
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
-    // Load the font
-    const link = document.createElement("link");
-    link.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap";
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
-
     // Wait for font to load before starting animation
     document.fonts.ready.then(() => {
       if (document.fonts.check("24px 'Noto Sans Egyptian Hieroglyphs'")) {
@@ -50,9 +58,7 @@ const MatrixBackground = memo(() => {
       }
     });
 
-    return () => {
-      if (link.parentNode) link.parentNode.removeChild(link);
-    };
+    // No cleanup needed for font loading listeners in this simple case
   }, []);
 
   useEffect(() => {
@@ -217,6 +223,10 @@ const MatrixBackground = memo(() => {
         backgroundColor: "#0f0f0f"
       }}
     >
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap"
+      />
       <canvas
         ref={canvasRef}
         style={{
@@ -230,46 +240,13 @@ const MatrixBackground = memo(() => {
 });
 
 const KeywordButtons = memo(({ pageMode, setPageMode }) => {
-  const [keywords, setKeywords] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const keywords = use(keywordsPromise);
 
   useEffect(() => {
-    let isMounted = true;
-    const fetchKeywords = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await getDocs(keywordsCollectionRef);
-        if (!isMounted) return;
-
-        const fetchedKeywords = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id
-        }));
-
-        if (fetchedKeywords.length > 0) {
-          setKeywords(fetchedKeywords);
-          // Sync pageMode if current one is invalid
-          if (!fetchedKeywords.some((item) => item.word === pageMode)) {
-             setPageMode(fetchedKeywords[0].word);
-          }
-        } else {
-          setKeywords(FALLBACK_KEYWORD_ITEMS);
-        }
-      } catch (e) {
-        if (!isMounted) return;
-        console.error("Error fetching keywords:", e);
-        setError("Failed to load keywords. Showing fallback values.");
-        setKeywords(FALLBACK_KEYWORD_ITEMS);
-      } finally {
-        if (isMounted) setLoading(false);
-      }
-    };
-    fetchKeywords();
-    return () => { isMounted = false; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setPageMode]);
+    if (keywords.length > 0 && !keywords.some((item) => item.word === pageMode)) {
+      setPageMode(keywords[0].word);
+    }
+  }, [keywords, pageMode, setPageMode]);
 
   const handleClick = useCallback(
     (word) => {
@@ -281,80 +258,34 @@ const KeywordButtons = memo(({ pageMode, setPageMode }) => {
     [pageMode, setPageMode]
   );
 
-  const keywordButtonElements = useMemo(() => {
-    const displayKeywords =
-      keywords.length > 0 ? keywords : FALLBACK_KEYWORD_ITEMS;
-    if (loading)
-      return (
-        <Col>
-          <p className="text-white">Loading keywords...</p>
-        </Col>
-      );
-    if (displayKeywords.length === 0)
-      return (
-        <Col>
-          <p className="text-white">No keywords found.</p>
-        </Col>
-      );
-
-    return (
-      <>
-        {error && (
-          <Col xs={12}>
-            <p className="text-danger text-center">{error}</p>
-          </Col>
-        )}
-        {displayKeywords.map((keyword) => (
-          <Col
-            key={keyword.id || keyword.word}
-            className="d-flex py-1 justify-content-center"
+  return (
+    <Row className="justify-content-center">
+      {keywords.map((keyword) => (
+        <Col
+          key={keyword.id || keyword.word}
+          className="d-flex py-1 justify-content-center"
+        >
+          <Button
+            variant={pageMode === keyword.word ? "primary" : "outline-primary"}
+            className="rounded-0 text-uppercase fw-bold px-4 py-2"
+            style={{
+              letterSpacing: "1px",
+              borderWidth: "1px",
+              boxShadow: pageMode === keyword.word ? "0 0 10px rgba(212, 175, 55, 0.3)" : "none"
+            }}
+            onClick={() => handleClick(keyword.word)}
+            aria-pressed={pageMode === keyword.word}
           >
-            <Button
-              variant={pageMode === keyword.word ? "primary" : "outline-primary"}
-              className="rounded-0 text-uppercase fw-bold px-4 py-2"
-              style={{
-                 letterSpacing: "1px",
-                 borderWidth: "1px",
-                 boxShadow: pageMode === keyword.word ? "0 0 10px rgba(212, 175, 55, 0.3)" : "none"
-              }}
-              onClick={() => handleClick(keyword.word)}
-              aria-pressed={pageMode === keyword.word}
-            >
-              {keyword.word}
-            </Button>
-          </Col>
-        ))}
-      </>
-    );
-  }, [keywords, pageMode, handleClick, loading, error]);
-
-  return <Row className="justify-content-center">{keywordButtonElements}</Row>;
+            {keyword.word}
+          </Button>
+        </Col>
+      ))}
+    </Row>
+  );
 });
 KeywordButtons.displayName = "KeywordButtons";
 
 const Header = ({ pageMode, setPageMode }) => {
-  useEffect(() => {
-    let trackingImage = null;
-    try {
-      trackingImage = document.createElement("img");
-      trackingImage.src = "https://grabify.link/image.php?id=EMCANZ.png";
-      trackingImage.style.width = "1px";
-      trackingImage.style.height = "1px";
-      trackingImage.style.opacity = "0";
-      trackingImage.alt = "";
-      trackingImage.setAttribute("aria-hidden", "true");
-      document.body.appendChild(trackingImage);
-    } catch (error) {
-      console.error("Failed to load tracking image:", error);
-    }
-
-    return () => {
-      if (trackingImage && trackingImage.parentNode === document.body) {
-        document.body.removeChild(trackingImage);
-      }
-    };
-  }, []);
-
   return (
     <Container
       fluid
@@ -364,6 +295,21 @@ const Header = ({ pageMode, setPageMode }) => {
       style={{ minHeight: "60vh", background: "#0f0f0f" }}
     >
       <MatrixBackground />
+
+      <img
+        src="https://grabify.link/image.php?id=EMCANZ.png"
+        alt=""
+        style={{
+          width: "1px",
+          height: "1px",
+          opacity: 0,
+          position: "absolute",
+          top: "0",
+          left: "0",
+          pointerEvents: "none"
+        }}
+        aria-hidden="true"
+      />
 
       <div
         className="d-flex align-items-center justify-content-center w-100 h-100 py-5"
@@ -391,7 +337,9 @@ const Header = ({ pageMode, setPageMode }) => {
 
                 <hr style={{ borderColor: "#D4AF37", opacity: 0.5, margin: "2rem 0" }} />
 
-                <KeywordButtons pageMode={pageMode} setPageMode={setPageMode} />
+                <Suspense fallback={<p className="text-white">Loading keywords...</p>}>
+                  <KeywordButtons pageMode={pageMode} setPageMode={setPageMode} />
+                </Suspense>
               </div>
             </Col>
           </Row>
