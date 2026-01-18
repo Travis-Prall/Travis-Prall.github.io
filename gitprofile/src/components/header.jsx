@@ -384,7 +384,7 @@ const Header = ({ pageMode, setPageMode }) => {
                 <h1 className="display-4 fw-bold text-white mb-2" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}>
                   {process.env.REACT_APP_PERSON_NAME || SITE_PROFILE.name}
                 </h1>
-                
+
                 <div className="mb-4">
                   <SocialMediaBar />
                 </div>
