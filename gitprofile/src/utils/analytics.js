@@ -1,6 +1,6 @@
 import ReactGA from "react-ga4";
 
-const TRACKING_ID = process.env.REACT_APP_GA_MEASUREMENT_ID;
+const TRACKING_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
 export const initGA = () => {
   if (!TRACKING_ID) {
@@ -8,7 +8,7 @@ export const initGA = () => {
     return;
   }
 
-  const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === "development";
+  const isDev = !import.meta.env.NODE_ENV || import.meta.env.NODE_ENV === "development";
 
   ReactGA.initialize(TRACKING_ID, {
     gaOptions: {

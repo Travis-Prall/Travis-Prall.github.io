@@ -1,10 +1,10 @@
-const CLARITY_PROJECT_ID = process.env.REACT_APP_CLARITY_PROJECT_ID;
+const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID;
 
 export const initClarity = () => {
   if (!CLARITY_PROJECT_ID) return;
   
   // Per instructions: check dev mode.
-  if (process.env.NODE_ENV === "development") return;
+  if (import.meta.env.NODE_ENV === "development") return;
 
   (function (c, l, a, r, i, t, y) {
     c[a] =
